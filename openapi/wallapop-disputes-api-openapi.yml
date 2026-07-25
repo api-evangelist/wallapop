@@ -1,0 +1,157 @@
+openapi: 3.0.1
+info:
+  title: Items Connect Categories Disputes API
+  description: 'The Items Connect API streamlines the listing process by allowing sellers to programmatically post items for sale, offering an efficient alternative to creating individual item listings through the user interface.
+
+    '
+  version: 0.0.1
+servers:
+- url: https://connect.wallapop.com
+  description: Production
+security:
+- oAuthWithPKCE: []
+tags:
+- name: Disputes
+paths:
+  /disputes/{disputeId}:
+    get:
+      tags:
+      - Disputes
+      parameters:
+      - in: path
+        name: disputeId
+        required: true
+        schema:
+          type: string
+          format: uuid
+        description: The dispute ID.
+      summary: Retrieve dispute details
+      description: Obtain the details of a specific dispute by providing its ID.
+      operationId: findDispute
+      responses:
+        '200':
+          description: Successfully retrieved the dispute details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectDisputeRestResponse'
+        '403':
+          description: Forbidden. The user does not have permission to access the requested resource.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found. A resource with the specified ID does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    ConnectDisputeEvidence:
+      type: object
+      description: Evidence attached to a dispute, such as a photo or video, including a thumbnail.
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The URL where the evidence file can be accessed.
+          example: https://cdn.wallapop.com/evidence/photo1.jpg
+        thumbnail_url:
+          type: string
+          format: uri
+          description: The URL for the thumbnail version of the evidence.
+          example: https://cdn.wallapop.com/evidence/photo1-thumb.jpg
+    ConnectDisputeRestResponse:
+      type: object
+      description: Dispute details for a transaction, including evidence and status.
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the dispute.
+          example: bf44bd9c-b9fc-4e63-ba48-78539979738a
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time when the dispute was created.
+          example: '2024-06-10T12:34:56Z'
+        description:
+          type: string
+          description: The description provided for the dispute.
+          example: Item arrived damaged.
+        transaction_id:
+          type: string
+          description: The unique identifier of the related transaction.
+          example: 3e9wzv7zlmdr
+        status:
+          type: string
+          description: The current status of the dispute.
+          example: pending
+        photos:
+          type: array
+          description: List of photo evidences attached to the dispute.
+          items:
+            $ref: '#/components/schemas/ConnectDisputeEvidence'
+        videos:
+          type: array
+          description: List of video evidences attached to the dispute.
+          items:
+            $ref: '#/components/schemas/ConnectDisputeEvidence'
+        escalated_reason:
+          type: string
+          nullable: true
+          description: The reason why the dispute was escalated, if applicable.
+          example: Broken item.
+        reject_reason:
+          type: string
+          nullable: true
+          description: The reason why the dispute was rejected, if applicable.
+          example: Evidence insufficient.
+        type:
+          type: string
+          nullable: true
+          description: The type of dispute solution, such as refund or repair.
+          enum:
+          - refund
+          - repair
+          example: refund
+        check_deadline:
+          type: string
+          format: date-time
+          nullable: true
+          description: The deadline for quality check, if applicable.
+          example: '2024-06-15T23:59:59Z'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      description: Detailed information about the error encountered.
+      properties:
+        code:
+          type: string
+          enum:
+          - INVALID_ACCEPT_REQUEST
+          - USER_UNAUTHORIZED
+          - NOT_FOUND
+          - ONGOING_DELIVERY
+          - USER_IS_NOT_THE_SELLER
+          - INVALID_REGISTER_REQUEST
+          - ERROR_UPDATING_DELIVERY_STATUS
+          description: A standardized error descriptor.
+          example: INVALID_ACCEPT_REQUEST
+        message:
+          description: A detailed error message.
+          type: string
+          example: Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.
+  securitySchemes:
+    oAuthWithPKCE:
+      type: oauth2
+      description: The Items Connect API uses OAuth 2.0 Authorization Code flow with a Proof Key for Code Exchange.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth
+          tokenUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token
+          refreshUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token
+          scopes: {}

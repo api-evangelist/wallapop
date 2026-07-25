@@ -1,0 +1,344 @@
+openapi: 3.0.1
+info:
+  title: Items Connect Categories API
+  description: 'The Items Connect API streamlines the listing process by allowing sellers to programmatically post items for sale, offering an efficient alternative to creating individual item listings through the user interface.
+
+    '
+  version: 0.0.1
+servers:
+- url: https://connect.wallapop.com
+  description: Production
+security:
+- oAuthWithPKCE: []
+tags:
+- name: Categories
+  description: A category is a classification for product listings, with specific attributes and constraints that products within the category must adhere to.
+paths:
+  /items/categories:
+    get:
+      summary: Retrieve all categories
+      description: Retrieve Wallaop's complete category hierarchy for items. This list will help you identify the categories that best classify the items you want to sell.
+      tags:
+      - Categories
+      parameters:
+      - name: Accept-Language
+        in: header
+        required: false
+        schema:
+          type: string
+        description: The language of the category title will be returned when it has translations in different languages.
+        example: es
+      responses:
+        '200':
+          description: The categories were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoriesResponse'
+  /items/categories/{id}/attributes:
+    get:
+      summary: Retrieve a category's attributes
+      description: Returns the acceptable attributes for items categorized by category, including mandatory and optional attributes.
+      operationId: getCategoryAttributes
+      tags:
+      - Categories
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        description: The ID of the category.
+        example: '12467'
+      - name: Accept-Language
+        in: header
+        required: false
+        schema:
+          type: string
+        description: The language used to present the attribute title when it has translations in multiple languages.
+        example: es
+      responses:
+        '200':
+          description: The category's attributes were successfully retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAttributesResponse'
+        '404':
+          description: Not Found. A resource with the specified ID does not exist.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    CategoryAttributeDiscreteValuesResponse:
+      description: An attribute that allows selection from a predefined set of options, similar to choosing a value from an enumerated list.
+      required:
+      - id
+      - type
+      - is_mandatory
+      - options
+      properties:
+        id:
+          type: string
+          description: The ID of the attribute.
+        type:
+          type: string
+          enum:
+          - discrete_values
+        is_mandatory:
+          type: boolean
+          description: Indicates whether the attribute is mandatory.
+          example: true
+        mandatory_by_date:
+          $ref: '#/components/schemas/MandatoryByDate'
+        options:
+          type: object
+          description: The options for attributes of type 'discrete_values'.
+          required:
+          - max_choices
+          - values
+          properties:
+            max_choices:
+              type: integer
+              description: The maximum number of selectable options.
+            values:
+              type: array
+              items:
+                type: object
+                required:
+                - id
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the attribute value, expected when adding or updating a specific item attribute.
+                  title:
+                    type: string
+                    description: The title of the option in the requested language, if available.
+    RegexValidation:
+      type: object
+      description: The regex validation applied to the value.
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          description: 'Indicates how the regex pattern is applied. The possible values include: `not_match` or `not_contain`.
+
+            '
+          example: not_contain
+        value:
+          type: string
+          description: The regex pattern.
+          example: ^(\s+$)
+    MandatoryByDate:
+      type: string
+      format: date
+      description: The expected date after which the attribute will be mandatory.
+      example: '2024-12-30'
+    CategoryAttributeNumericValueResponse:
+      description: An attribute that accepts numerical values.
+      required:
+      - id
+      - type
+      - is_mandatory
+      - data_type
+      properties:
+        id:
+          type: string
+          description: The ID of the attribute.
+        type:
+          type: string
+          enum:
+          - numeric
+        is_mandatory:
+          type: boolean
+          description: Indicates whether the attribute is mandatory.
+          example: true
+        mandatory_by_date:
+          $ref: '#/components/schemas/MandatoryByDate'
+        data_type:
+          type: object
+          description: Information about the numeric data type. See the [OpenAPI Specification](https://spec.openapis.org/oas/latest.html#data-types) for more details.
+          properties:
+            type:
+              type: string
+              enum:
+              - integer
+              - number
+              description: The numeric data type.
+            format:
+              type: string
+              enum:
+              - int32
+              - int64
+              - float
+              - double
+              description: The format of the numeric data type.
+        range:
+          type: object
+          description: The allowed range for the numeric value.
+          properties:
+            greater_than_or_equal:
+              type: integer
+              description: The minimum allowed value (inclusive).
+            less_than_or_equal:
+              type: integer
+              description: The maximum allowed value (inclusive).
+    CategoryAttributesResponse:
+      type: object
+      properties:
+        attributes:
+          type: array
+          items:
+            type: object
+            oneOf:
+            - $ref: '#/components/schemas/CategoryAttributeDiscreteValuesResponse'
+            - $ref: '#/components/schemas/CategoryAttributeTextValueResponse'
+            - $ref: '#/components/schemas/CategoryAttributeNumericValueResponse'
+          example:
+            example:
+              attributes:
+              - id: condition
+                type: discrete_values
+                is_mandatory: true
+                options:
+                  max_choices: 1
+                values:
+                - id: new
+                  title: Nuevo
+                - id: as_good_as_new
+                  title: Como nuevo
+                - id: good
+                  title: En buen estado
+                - id: fair
+                  title: En condiciones aceptables
+                - id: has_given_it_all
+                  title: Lo ha dado todo
+              - id: brand
+                type: text
+                is_mandatory: true
+                max_length: 75
+              - id: height_cm
+                type: numeric
+                is_mandatory: false
+                data_type:
+                  type: integer
+                range:
+                  greater_than_or_equal: 0
+                  less_than_or_equal: 999
+    CategoryAttributeTextValueResponse:
+      type: object
+      description: An attribute that accepts text input (i.e., a string of characters).
+      required:
+      - id
+      - type
+      - is_mandatory
+      - max_length
+      properties:
+        id:
+          type: string
+          description: The ID of the attribute.
+        type:
+          type: string
+          enum:
+          - text
+        is_mandatory:
+          type: boolean
+          description: Indicates whether the attribute is mandatory.
+          example: true
+        mandatory_by_date:
+          $ref: '#/components/schemas/MandatoryByDate'
+        max_length:
+          type: integer
+          description: The maximum allowable length for the provided text value.
+          example: 640
+        regex:
+          type: array
+          description: A regex pattern that the provided text value is validated against.
+          items:
+            $ref: '#/components/schemas/RegexValidation'
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the category.
+          example: 24200
+        parent_id:
+          type: integer
+          description: 'If the category is a subcategory, the `parent_id` indicates the category it is logically nested under. It returns `null` if the category is a root-level category, meaning it is not nested under another category.
+
+            '
+          example: 24200
+        name:
+          type: string
+          description: 'The category name will be translated according to the `Accept-Language` header. If Wallapop does not support the language, it will default to English.
+
+            '
+          example: Tecnología y electrónica
+        assignable_to_item:
+          type: boolean
+          description: 'When set to `true`, a category can be assigned to an item. If set to `false`, it acts as a parent category and cannot be selected directly, containing more specific subcategories. Wallapop encourages users to choose the most specific subcategory, so top-level and intermediate categories in certain trees cannot be assigned to items.
+
+            '
+          example: false
+        subcategories:
+          type: array
+          description: A list of subcategories that are logically nested under this category. An empty list in the response indicates that the category can be assigned to an item and that there are no specific subcategories available for selection.
+          example:
+          - id: 10414
+            parent_id: 24200
+            name: TV
+            assignable_to_item: true
+          items:
+            $ref: '#/components/schemas/Category'
+    CategoriesResponse:
+      type: object
+      properties:
+        categories:
+          type: array
+          description: Wallapop's category hierarchy used to classify items. Some categories serve as grouping mechanisms, while others can be assigned to items.
+          items:
+            $ref: '#/components/schemas/Category'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      description: Additional detailed information regarding the error.
+      properties:
+        code:
+          type: string
+          enum:
+          - INVALID_BODY_REQUEST
+          - MISSING_MAIN_IMAGE
+          - USER_LOCATION_MISSING
+          - INVALID_CATEGORY_LEAF
+          - INVALID_LOCATION
+          - INVALID_ITEM_ID
+          - INVALID_IMAGE
+          - INVALID_ATTRIBUTE
+          - NOT_IMPLEMENTED_CATEGORY
+          - INVALID_STATUS
+          - MAX_IMAGES_EXCEED
+          - INSUFFICIENT_IMAGES
+          - USER_UNAUTHORIZED
+          description: The error code corresponds to one of the values from the specified enumeration list.
+          example: USER_LOCATION_MISSING
+        message:
+          description: A detailed error description.
+          type: string
+          example: User without location set
+  securitySchemes:
+    oAuthWithPKCE:
+      type: oauth2
+      description: The Items Connect API uses OAuth 2.0 Authorization Code flow with a Proof Key for Code Exchange.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth
+          tokenUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token
+          refreshUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token
+          scopes: {}
