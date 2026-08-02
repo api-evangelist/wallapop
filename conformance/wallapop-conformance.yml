@@ -1,0 +1,56 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/*.yml + https://developers.wallapop.com/pages/api-essentials/auth + well-known/wallapop-openid-configuration.json
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      All three Connect APIs declare an oauth2 securityScheme (authorizationCode
+      flow); the auth guide documents OAuth 2.0 Authorization Code with PKCE
+      per the OAuth 2.0 Security BCP.
+  - id: oauth2-pkce
+    conforms: true
+    evidence: >-
+      Docs require PKCE (S256 code_challenge, 43+ char code_verifier); Keycloak
+      discovery advertises code_challenge_methods_supported [plain, S256].
+  - id: oidc
+    conforms: true
+    evidence: >-
+      Authorization server is Keycloak with published OIDC discovery at
+      iam.wallapop.com/realms/wallapop-connect/.well-known/openid-configuration
+      (captured in well-known/); the Connect API itself uses plain OAuth 2.0
+      bearer tokens.
+  - id: pagination
+    conforms: true
+    evidence: >-
+      Items Connect API uses cursor pagination — metadata.pagination.next token
+      passed back as the `since` query parameter, max 40 items per page.
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors are a custom application/json envelope {code, message} with
+      per-API enumerated codes, not application/problem+json.
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      No Idempotency-Key header or general idempotency contract is documented;
+      the accept-shipping-request operations require a client-generated
+      transaction_id, which deduplicates those specific calls only.
+  - id: json:api
+    conforms: false
+    evidence: Plain JSON request/response bodies; no JSON:API media type.
+  - id: fapi
+    conforms: false
+    evidence: No FAPI profile claimed; standard OAuth 2.0 + PKCE only.
+  - id: scim
+    conforms: false
+    evidence: No SCIM user-provisioning surface.
+  - id: odata
+    conforms: false
+    evidence: No OData conventions.
+  - id: psd2
+    conforms: false
+    evidence: Marketplace API, not a payment-services API; no PSD2/open-banking claims.
+  - id: fhir
+    conforms: false
+    evidence: Not a healthcare API.

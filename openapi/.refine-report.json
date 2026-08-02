@@ -1,0 +1,24 @@
+{
+  "provider": "wallapop",
+  "sources": [
+    "wallapop-categories-api-openapi.yml",
+    "wallapop-delivery-api-openapi.yml",
+    "wallapop-disputes-api-openapi.yml",
+    "wallapop-items-api-openapi.yml",
+    "wallapop-transactions-api-openapi.yml",
+    "wallapop-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "wallapop-categories-api-openapi.yml",
+    "wallapop-delivery-api-openapi.yml",
+    "wallapop-disputes-api-openapi.yml",
+    "wallapop-items-api-openapi.yml",
+    "wallapop-transactions-api-openapi.yml",
+    "wallapop-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

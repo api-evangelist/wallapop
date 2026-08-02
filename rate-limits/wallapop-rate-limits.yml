@@ -1,0 +1,35 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Wallapop
+providerId: wallapop
+created: '2026-07-21'
+modified: '2026-07-21'
+generated: '2026-07-21'
+method: searched
+source: https://developers.wallapop.com/pages/api-essentials/rate-limits
+tags:
+  - Rate Limiting
+  - Marketplace
+description: >-
+  Wallapop Connect API rate limits: a global per-seller limit on authenticated
+  API requests, plus per-source-IP limits on the OAuth 2.0 token endpoints.
+limits:
+  - name: Global API limit (professional sellers)
+    scope: seller
+    metric: requests_per_second
+    limit: 36
+    timeFrame: second
+    notes: Applies to all authenticated API requests from a professional seller.
+  - name: Authorization Code Grant (user access token)
+    scope: source-ip
+    metric: requests_per_5_minutes
+    limit: 174
+    timeFrame: 5 minutes
+    notes: OAuth token endpoint; enforced by requester source IP.
+  - name: Refresh Token Grant (user access token)
+    scope: source-ip
+    metric: requests_per_5_minutes
+    limit: 174
+    timeFrame: 5 minutes
+    notes: OAuth token endpoint; enforced by requester source IP.

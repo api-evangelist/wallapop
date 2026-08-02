@@ -1,0 +1,53 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/wallapop-items-openapi-original.yml, openapi/wallapop-transactions-openapi-original.yml,
+  openapi/wallapop-webhooks-openapi-original.yml
+docs: https://developers.wallapop.com/pages/api-essentials/auth
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  pkce: required (S256)
+  token_use: Bearer access token in the Authorization header on every connect.wallapop.com request
+schemes:
+- name: oAuthWithPKCE
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth
+    tokenUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token
+    scopes: 0
+  description: The Items Connect API uses OAuth 2.0 Authorization Code flow with a Proof Key
+    for Code Exchange.
+  sources:
+  - openapi/wallapop-items-openapi-original.yml
+  - openapi/wallapop-transactions-openapi-original.yml
+  - openapi/wallapop-webhooks-openapi-original.yml
+details:
+  authorization_server: Keycloak realm wallapop-connect at iam.wallapop.com (OIDC discovery captured in well-known/wallapop-openid-configuration.json)
+  credentials: >-
+    One application credential (public client_id + confidential client_secret)
+    per integrator application — not per managed user; user consent produces
+    per-user token pairs.
+  pkce: >-
+    code_verifier is a URL-safe random string of at least 43 characters;
+    code_challenge = BASE64URL-ENCODE(SHA256(ASCII(code_verifier))) with method
+    S256.
+  token_exchange: >-
+    POST to the token endpoint with grant_type=authorization_code, code,
+    redirect_uri, code_verifier, client_id, client_secret. A valid User-Agent
+    header is required or the request may be rejected. Authorization codes are
+    single-use and expire quickly (invalid_grant otherwise).
+  refresh: >-
+    grant_type=refresh_token returns a new access_token AND a new
+    refresh_token; the application must store the new refresh token and
+    discard the previous one. Refresh tokens have a maximum lifetime.
+  token_response_scope: offline_access
+  rate_limits: >-
+    Token endpoints are limited to 174 requests per 5 minutes per source IP for
+    both authorization_code and refresh_token grants (see
+    rate-limits/wallapop-rate-limits.yml).
+  state_parameter: >-
+    Docs recommend the state parameter to correlate callbacks to users and
+    prevent CSRF.

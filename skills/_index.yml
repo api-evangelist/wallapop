@@ -1,0 +1,19 @@
+generated: '2026-07-21'
+method: generated
+skills:
+  - file: wallapop-publish-item.md
+    name: Publish an item on Wallapop
+    api: openapi/wallapop-items-openapi-original.yml
+    operations: [createItem, getCategoryAttributes, addItemImage, getItem, userItems]
+  - file: wallapop-fulfill-sale.md
+    name: Fulfill a Wallapop sale
+    api: openapi/wallapop-transactions-openapi-original.yml
+    operations: [sellerPendingRequests, sellerRequest, acceptHomePickup, sellerPendingTransactions, sellerTransaction, registerDelivery, updateDeliveryStatus]
+  - file: wallapop-manage-webhooks.md
+    name: Manage Wallapop webhooks
+    api: openapi/wallapop-webhooks-openapi-original.yml
+    operations: [createWebhook, findMyWebhooks, updateWebhook, updateWebhookToken, deleteWebhook]
+  - file: wallapop-rotate-inventory.md
+    name: Rotate Wallapop inventory within listing limits
+    api: openapi/wallapop-items-openapi-original.yml
+    operations: [getMyItemsLimits, userItems, userInactiveItems, markItemAsSold, deleteItem, inactivateItem, activateItem]

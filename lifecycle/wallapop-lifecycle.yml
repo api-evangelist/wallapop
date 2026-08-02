@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.wallapop.com/pages/updates + https://developers.wallapop.com/pages/api-essentials/testing-policy + live probes
+versioning:
+  scheme: none
+  current: '0.0.1'
+  notes: >-
+    All three Connect API OpenAPI documents report version 0.0.1 with no URI or
+    header versioning. Changes are announced on the dated Updates page.
+  docs: https://developers.wallapop.com/pages/updates
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: >-
+    No published deprecation policy or RFC 8594 Sunset header support found.
+    The Items spec marks one schema deprecated (ItemHashTags — list of
+    hashtags).
+sla: null
+status_page: null
+status_page_probe:
+  - host: status.wallapop.com
+    result: does not resolve
+  - host: wallapop.statuspage.io
+    result: 302 redirect to generic statuspage.io (no tenant)
+environments:
+  - name: production
+    url: https://connect.wallapop.com
+    notes: >-
+      Wallapop publishes no testing environment; the API Testing Policy states
+      testing is performed in production.
+deprecated_operations: []
+deprecated_schemas:
+  - openapi/wallapop-items-openapi-original.yml#/components/schemas/ItemHashTags

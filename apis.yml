@@ -1,8 +1,27 @@
 aid: wallapop
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/wallapop.png
 name: Wallapop
-description: 'Wallapop is a company surfaced as a portfolio company of accel, insight-partners, northzone
-  and added to the API Evangelist network as a stub for enrichment. Sector: consumer. This profile is
-  a lead awaiting the enrichment pipeline.'
+description: >-
+  Wallapop is a Barcelona-based consumer marketplace for buying and selling
+  second-hand items across Spain, Italy, and Portugal, backed by Accel,
+  Insight Partners, and Northzone. Its Wallapop Connect API lets professional
+  sellers and third-party integrators programmatically publish and manage
+  listings (Items Connect API), accept shipping requests and track
+  transactions through delivery (Transactions Connect API), and subscribe to
+  signed event notifications (Webhooks Connect API), all secured with OAuth
+  2.0 Authorization Code + PKCE via its Keycloak-based identity service.
 url: https://raw.githubusercontent.com/api-evangelist/wallapop/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -14,11 +33,117 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Consumer
-apis: []
+- Marketplace
+- Ecommerce
+- Second-Hand
+- Classifieds
+- Shipping
+- Webhooks
+apis:
+- aid: wallapop:wallapop-categories-api
+  name: Wallapop Categories API
+  description: >-
+    A category is a classification for product listings, with specific attributes and constraints that
+    products within the category must adhere to.
+  humanURL: https://developers.wallapop.com/apis/items
+  baseURL: https://connect.wallapop.com
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/wallapop-categories-api-openapi.yml
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/items
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/delivery
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/webhooks
+- aid: wallapop:wallapop-delivery-api
+  name: Wallapop Delivery API
+  description: The Delivery API from Wallapop — 1 operation(s) for delivery.
+  humanURL: https://developers.wallapop.com/apis/items
+  baseURL: https://connect.wallapop.com
+  tags:
+  - Delivery
+  properties:
+  - type: OpenAPI
+    url: openapi/wallapop-delivery-api-openapi.yml
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/items
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/delivery
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/webhooks
+- aid: wallapop:wallapop-disputes-api
+  name: Wallapop Disputes API
+  description: The Disputes API from Wallapop — 1 operation(s) for disputes.
+  humanURL: https://developers.wallapop.com/apis/items
+  baseURL: https://connect.wallapop.com
+  tags:
+  - Disputes
+  properties:
+  - type: OpenAPI
+    url: openapi/wallapop-disputes-api-openapi.yml
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/items
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/delivery
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/webhooks
+- aid: wallapop:wallapop-items-api
+  name: Wallapop Items API
+  description: >-
+    An item refers to a listing created by a user on the Wallapop marketplace, indicating their intent
+    to sell. These items can include a diverse range of products.
+  humanURL: https://developers.wallapop.com/apis/items
+  baseURL: https://connect.wallapop.com
+  tags:
+  - Items
+  properties:
+  - type: OpenAPI
+    url: openapi/wallapop-items-api-openapi.yml
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/items
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/delivery
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/webhooks
+- aid: wallapop:wallapop-transactions-api
+  name: Wallapop Transactions API
+  description: A shipping transaction is initiated when a seller accepts a shipping request.
+  humanURL: https://developers.wallapop.com/apis/items
+  baseURL: https://connect.wallapop.com
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/wallapop-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/items
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/delivery
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/webhooks
+- aid: wallapop:wallapop-webhooks-api
+  name: Wallapop Webhooks API
+  description: Webhooks allow you to receive event notifications.
+  humanURL: https://developers.wallapop.com/apis/items
+  baseURL: https://connect.wallapop.com
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/wallapop-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/items
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/delivery
+  - type: Documentation
+    url: https://developers.wallapop.com/apis/webhooks
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -26,4 +151,61 @@ maintainers:
   email: info@apis.io
 common:
 - type: Website
-  url: http://www.wallapop.com
+  url: https://www.wallapop.com
+- type: DeveloperPortal
+  url: https://developers.wallapop.com/
+- type: Documentation
+  url: https://developers.wallapop.com/intro
+- type: APIReference
+  url: https://developers.wallapop.com/apis/
+- type: GettingStarted
+  url: https://developers.wallapop.com/pages/guides/quickstart
+- type: Support
+  url: https://ayuda.wallapop.com/
+- type: GitHubOrganization
+  url: https://github.com/Wallapop
+- type: Pricing
+  url: https://es.wallapop.com/wallapop-pro
+- type: SignUp
+  url: https://es.wallapop.com/login
+- type: TermsOfService
+  url: https://es.wallapop.com/toc
+- type: PrivacyPolicy
+  url: https://es.wallapop.com/privacy
+- type: ChangeLog
+  url: changelog/wallapop-changelog.yml
+- type: Authentication
+  url: authentication/wallapop-authentication.yml
+- type: OAuthScopes
+  url: scopes/wallapop-scopes.yml
+- type: DomainSecurity
+  url: security/wallapop-domain-security.yml
+- type: RateLimits
+  url: rate-limits/wallapop-rate-limits.yml
+- type: Conventions
+  url: conventions/wallapop-conventions.yml
+- type: ErrorCatalog
+  url: errors/wallapop-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/wallapop-lifecycle.yml
+- type: Conformance
+  url: conformance/wallapop-conformance.yml
+- type: DataModel
+  url: data-model/wallapop-data-model.yml
+- type: Webhooks
+  url: asyncapi/wallapop-webhooks-catalog.yml
+- type: MCPServer
+  url: mcp/wallapop-mcp.yml
+- type: Packages
+  url: packages/wallapop-packages.yml
+- type: WellKnown
+  url: well-known/wallapop-well-known.yml
+- type: LLMsTxt
+  url: llms/wallapop-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 26
+  pass: local-v1

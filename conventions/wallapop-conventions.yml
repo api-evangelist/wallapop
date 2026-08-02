@@ -1,0 +1,64 @@
+generated: '2026-07-21'
+method: searched
+source: >-
+  https://developers.wallapop.com/pages/api-essentials/auth,
+  https://developers.wallapop.com/pages/api-essentials/rate-limits,
+  https://developers.wallapop.com/pages/api-essentials/testing-policy,
+  https://developers.wallapop.com/pages/guides/webhooks + derived from
+  openapi/*.yml
+description: >-
+  Cross-cutting request/response semantics of the Wallapop Connect API — the
+  professional-seller integration surface (Items, Transactions, Webhooks) at
+  connect.wallapop.com.
+base_url: https://connect.wallapop.com
+api_style: REST over HTTPS, JSON requests and responses
+authentication:
+  scheme: OAuth 2.0 Authorization Code with PKCE (Keycloak, wallapop-connect realm); Bearer access token on every request
+  authorization_url: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth
+  token_url: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token
+  docs: https://developers.wallapop.com/pages/api-essentials/auth
+  detail: authentication/wallapop-authentication.yml
+  notes: >-
+    One application credential (client_id + client_secret) serves all managed
+    users; tokens are per-user. Token endpoint requests must include a valid
+    User-Agent header. Refresh rotates both tokens — store the new
+    refresh_token and discard the old.
+idempotency:
+  supported: false
+  notes: >-
+    No Idempotency-Key header or general idempotency contract is documented.
+    The accept-shipping-request operations (acceptHomePickup, accept
+    post-office) require a client-generated transaction_id, which acts as a
+    dedupe key for those calls only.
+pagination:
+  style: cursor
+  request_params: [since]
+  response_fields: [metadata.pagination.next]
+  page_size: 40 items per page (maximum); pagination is null when no results remain
+  applies_to: GET /items, GET /items/inactive (Items Connect API)
+request_ids:
+  header: null
+  notes: No request-id tracing header documented for connect.wallapop.com.
+field_expansion: none documented
+metadata_fields:
+  - external_id — seller's internal SKU/unique ID, available on all categories
+  - license_plate — vehicle identification attribute for the Cars category
+versioning:
+  scheme: none (specs at 0.0.1); changes announced on the Updates page
+  detail: lifecycle/wallapop-lifecycle.yml
+error_envelope:
+  media_type: application/json
+  shape: '{ "code": "<ENUM>", "message": "<detail>" }'
+  detail: errors/wallapop-problem-types.yml
+rate_limits:
+  global: 36 requests per second per professional seller (authenticated API requests)
+  token_endpoints: 174 requests per 5 minutes per source IP (authorization_code and refresh_token grants)
+  docs: https://developers.wallapop.com/pages/api-essentials/rate-limits
+  detail: rate-limits/wallapop-rate-limits.yml
+environments:
+  production_only: true
+  notes: 'API Testing Policy: Wallapop has no testing environment; testing is performed in production.'
+webhooks:
+  signature_headers: [X-Wallapop-Signature, X-Wallapop-Timestamp]
+  scheme: HMAC-SHA256 over "payload:timestamp" with the per-webhook shared token
+  detail: asyncapi/wallapop-webhooks-catalog.yml

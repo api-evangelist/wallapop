@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Wallapop Webhooks Connect API
+  version: 1.0.0
+extends: openapi/wallapop-webhooks-openapi-original.yml
+x-provenance:
+  generated: '2026-07-21'
+  method: generated
+  source: openapi/wallapop-webhooks-openapi-original.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: wallapop
+        harvested: '2026-07-21'
+        source: https://developers.wallapop.com/_bundle/apis/webhooks.yaml
+        artifacts:
+          event-catalog: asyncapi/wallapop-webhooks-catalog.yml
+          conventions: conventions/wallapop-conventions.yml
+  - target: $.info
+    update:
+      x-apievangelist-note: >-
+        Webhook deliveries are signed with HMAC-SHA256 over "payload:timestamp"
+        using the per-webhook token (X-Wallapop-Signature +
+        X-Wallapop-Timestamp headers); the 18 subscribable event types are
+        catalogued in asyncapi/wallapop-webhooks-catalog.yml.

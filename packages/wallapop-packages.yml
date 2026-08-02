@@ -1,0 +1,17 @@
+generated: '2026-07-21'
+method: searched
+source: npm, PyPI, Maven Central, NuGet, pkg.go.dev, RubyGems, Packagist, crates.io + developers.wallapop.com + github.com/Wallapop
+description: >-
+  Wallapop publishes no first-party client libraries for the Wallapop Connect
+  API. The docs recommend using a generic OAuth 2.0 client library rather than
+  a vendor SDK, and the Wallapop GitHub organization (github.com/Wallapop)
+  contains only forks and internal tooling, no Connect API SDKs. One
+  community-built (unofficial) package exists on npm.
+packages:
+  - language: javascript
+    registry: npm
+    name: wallapop-mcp
+    url: https://www.npmjs.com/package/wallapop-mcp
+    install: npm install wallapop-mcp
+    official: false
+    notes: Community MCP server wrapping Wallapop's unofficial public search API — not affiliated with Wallapop.

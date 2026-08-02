@@ -1,0 +1,58 @@
+generated: '2026-07-21'
+method: searched
+source: live probes of /.well-known/ on wallapop.com, developers.wallapop.com, connect.wallapop.com, iam.wallapop.com, es.wallapop.com
+hosts:
+  - host: https://iam.wallapop.com
+    documents:
+      - path: /realms/wallapop-connect/.well-known/openid-configuration
+        status: 200
+        file: wallapop-openid-configuration.json
+        notes: Keycloak OIDC discovery for the wallapop-connect realm used by the Connect API OAuth 2.0 (PKCE) flow.
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+  - host: https://developers.wallapop.com
+    documents:
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        file: wallapop-oauth-authorization-server.json
+        notes: RFC 8414 metadata for the docs portal's hosted MCP server OAuth surface (issuer auth.cloud.redocly.com, endpoints under /_mcp/oauth2/).
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://connect.wallapop.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://wallapop.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://es.wallapop.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404

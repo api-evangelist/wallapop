@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://developers.wallapop.com/mcp (live tools/list probe, 2026-07-21)
+server:
+  name: wallapop-connect-docs
+  transport: http
+  url: https://developers.wallapop.com/mcp
+  protocol_version: '2025-03-26'
+  notes: >-
+    Hosted MCP server exposed by the Wallapop Connect developer portal
+    (Redocly-hosted docs). Speaks streamable HTTP; initialize + tools/list
+    verified live. OAuth metadata for the server is published at
+    https://developers.wallapop.com/.well-known/oauth-authorization-server
+    (dynamic client registration at /_mcp/register), though initialize and
+    tools/list responded without authentication. Tools cover API discovery and
+    documentation search over the Items, Transactions, and Webhooks Connect
+    APIs.
+tools:
+  - name: list-apis
+    description: Lists available APIs with their context and purpose
+  - name: get-endpoints
+    description: Get all endpoints for a specific API
+  - name: get-endpoint-info
+    description: Get comprehensive information about specific endpoint including parameters, security, and examples
+  - name: get-security-schemes
+    description: Get the security schemes for a specific API
+  - name: get-full-api-description
+    description: Get the complete OpenAPI description
+  - name: search
+    description: Search across the documentation to fetch relevant content for a given query
+community:
+  - name: wallapop-mcp
+    registry: npm
+    url: https://www.npmjs.com/package/wallapop-mcp
+    official: false
+    notes: Community MCP server wrapping Wallapop's unofficial public search API.

@@ -1,0 +1,56 @@
+generated: '2026-07-21'
+method: searched
+source: openapi/wallapop-items-openapi-original.yml, openapi/wallapop-transactions-openapi-original.yml,
+  openapi/wallapop-webhooks-openapi-original.yml
+docs: https://developers.wallapop.com/pages/api-essentials/auth
+notes: >-
+  The Wallapop Connect API does not use granular OAuth scopes: the auth guide
+  states "Just request the code — no need to set extra OAuth scopes", and the
+  OpenAPI oauth2 flows declare an empty scopes map. Token responses carry
+  scope "offline_access" (refresh-token capability). The Keycloak realm's OIDC
+  discovery (well-known/wallapop-openid-configuration.json) advertises the
+  standard realm scopes listed under realm_scopes_supported; these are
+  identity scopes, not API permission scopes.
+schemes:
+- name: oAuthWithPKCE
+  source: openapi/wallapop-items-openapi-original.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth
+    tokenUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token
+  description: The Items Connect API uses OAuth 2.0 Authorization Code flow with a Proof Key
+    for Code Exchange.
+- name: oAuthWithPKCE
+  source: openapi/wallapop-transactions-openapi-original.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth
+    tokenUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token
+  description: The Transactions Connect API uses OAuth 2.0 Authorization Code flow with a Proof
+    Key for Code Exchange.
+- name: oAuthWithPKCE
+  source: openapi/wallapop-webhooks-openapi-original.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth
+    tokenUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token
+  description: The Webhooks Connect API utilizes the OAuth 2.0 Authorization Code flow with
+    Proof Key for Code Exchange (PKCE) for secure authentication and token exchange.
+scopes:
+- scope: offline_access
+  description: Refresh-token capability; the only scope returned on Connect API token responses.
+  flows: [authorizationCode]
+  sources: [https://developers.wallapop.com/pages/api-essentials/auth]
+realm_scopes_supported:
+- openid
+- web-origins
+- roles
+- microprofile-jwt
+- profile
+- address
+- service_account
+- email
+- phone
+- offline_access
+- basic
+- acr

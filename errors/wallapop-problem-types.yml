@@ -1,0 +1,89 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/wallapop-items-openapi-original.yml, openapi/wallapop-transactions-openapi-original.yml, openapi/wallapop-webhooks-openapi-original.yml
+format: custom-json-envelope
+envelope:
+  media_type: application/json
+  shape: '{ "code": "<ENUM>", "message": "<detail>" }'
+  notes: >-
+    Every 4xx/409 error response returns an Error object with a required
+    machine-readable `code` (per-API enumeration) and a human-readable
+    `message`. Not RFC 9457 problem+json.
+status_codes:
+  - status: 400
+    title: Bad request — invalid body, attribute, or parameter
+  - status: 401
+    title: Unauthorized — missing/expired access token
+  - status: 403
+    title: Forbidden — the user does not have permission to access the resource
+  - status: 404
+    title: Not found — a resource with the specified ID does not exist
+  - status: 409
+    title: Conflict — resource state does not allow the operation
+error_codes:
+  items-connect-api:
+    source_spec: openapi/wallapop-items-openapi-original.yml
+    codes:
+      - INVALID_BODY_REQUEST
+      - MISSING_MAIN_IMAGE
+      - USER_LOCATION_MISSING
+      - INVALID_CATEGORY_LEAF
+      - INVALID_LOCATION
+      - INVALID_ITEM_ID
+      - INVALID_IMAGE
+      - INVALID_ATTRIBUTE
+      - NOT_IMPLEMENTED_CATEGORY
+      - INVALID_STATUS
+      - MAX_IMAGES_EXCEED
+      - INSUFFICIENT_IMAGES
+      - USER_UNAUTHORIZED
+  transactions-connect-api:
+    source_spec: openapi/wallapop-transactions-openapi-original.yml
+    codes:
+      - INVALID_ACCEPT_REQUEST
+      - USER_UNAUTHORIZED
+      - NOT_FOUND
+      - ONGOING_DELIVERY
+      - USER_IS_NOT_THE_SELLER
+      - INVALID_REGISTER_REQUEST
+      - ERROR_UPDATING_DELIVERY_STATUS
+  webhooks-connect-api:
+    source_spec: openapi/wallapop-webhooks-openapi-original.yml
+    codes:
+      - INVALID_BODY_REQUEST
+      - USER_UNAUTHORIZED
+problems:
+  - status: 400
+    code: INVALID_BODY_REQUEST
+    title: The request body failed validation
+    source_operation: openapi/wallapop-items-openapi-original.yml#createItem
+  - status: 401
+    code: USER_UNAUTHORIZED
+    title: Access token missing, expired, or not valid for this user
+    source_operation: openapi/wallapop-items-openapi-original.yml#userItems
+  - status: 403
+    title: Forbidden — the user does not have permission to access the requested resource
+    source_operation: openapi/wallapop-transactions-openapi-original.yml#sellerRequest
+  - status: 404
+    title: Not Found — a resource with the specified ID does not exist
+    source_operation: openapi/wallapop-transactions-openapi-original.yml#sellerRequest
+  - status: 409
+    code: INVALID_ACCEPT_REQUEST
+    title: Shipping request is not in PENDING status
+    remediation: Re-fetch the request with sellerRequest and only accept requests whose status is PENDING.
+    source_operation: openapi/wallapop-transactions-openapi-original.yml#acceptHomePickup
+  - status: 409
+    code: ONGOING_DELIVERY
+    title: A delivery is already registered for this transaction
+    source_operation: openapi/wallapop-transactions-openapi-original.yml#registerDelivery
+oauth_errors:
+  - error: invalid_grant
+    title: Authorization code or refresh token no longer valid
+    remediation: >-
+      Use the authorization code immediately and only once; on refresh, store
+      the newly returned refresh_token and discard the previous one. Documented
+      in the FAQ.
+  - error: token-endpoint rejection without User-Agent
+    title: Token exchange rejected when the User-Agent header is missing
+    remediation: Always send a valid User-Agent header on /token requests (documented in the FAQ).
+docs: https://developers.wallapop.com/pages/api-essentials/faq

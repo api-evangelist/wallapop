@@ -1,0 +1,32 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Wallapop Items Connect API
+  version: 1.0.0
+extends: openapi/wallapop-items-openapi-original.yml
+x-provenance:
+  generated: '2026-07-21'
+  method: generated
+  source: openapi/wallapop-items-openapi-original.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: wallapop
+        harvested: '2026-07-21'
+        source: https://developers.wallapop.com/_bundle/apis/items.yaml
+        artifacts:
+          authentication: authentication/wallapop-authentication.yml
+          conventions: conventions/wallapop-conventions.yml
+          errors: errors/wallapop-problem-types.yml
+          rate-limits: rate-limits/wallapop-rate-limits.yml
+  - target: $.info
+    update:
+      x-audience: professional sellers and third-party integrators (Wallapop Connect program)
+  - target: $.paths['/items/categories'].get
+    update:
+      x-apievangelist-note: >-
+        This operation is published without an operationId in the original
+        spec; referenced here by method+path.
+  - target: $.components.schemas.ItemHashTags
+    update:
+      x-apievangelist-note: Marked deprecated by the provider; avoid in new integrations.

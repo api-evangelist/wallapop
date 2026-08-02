@@ -1,0 +1,92 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/wallapop-items-openapi-original.yml, openapi/wallapop-transactions-openapi-original.yml, openapi/wallapop-webhooks-openapi-original.yml + https://developers.wallapop.com/pages/api-essentials/resources
+description: >-
+  Entity-relationship graph of the Wallapop Connect API, derived from the
+  OpenAPI schemas and the API Resources overview. The professional seller
+  (User) publishes Items into Categories; buyer purchases create Shipping
+  Requests that the seller accepts into Transactions, tracked through
+  Deliveries and optionally Disputes; Webhooks notify the seller application
+  of item/delivery/transaction/dispute events.
+entities:
+  - name: User
+    description: Professional seller connecting via an authorized application (OAuth 2.0 PKCE).
+  - name: Item
+    id_field: id
+    description: A listing for sale on the marketplace; core resource of the Items Connect API.
+  - name: Category
+    id_field: category_leaf_id
+    description: One of 800+ hierarchical categories; items must be assigned to a leaf category.
+  - name: CategoryAttribute
+    description: Per-category attribute definitions (discrete, text, numeric) with constraints.
+  - name: Image
+    id_field: imageId
+    description: Item photos — one main image plus additional ordered images.
+  - name: Stock
+    description: Units available for an item (Wallapop Pro feature).
+  - name: ListingLimit
+    description: Per-account listing capacity grouped by shared category sets (total/used/available).
+  - name: ShippingRequest
+    id_field: requestId
+    description: Created when a buyer pays for an item and delivery; pending until the seller accepts.
+  - name: Transaction
+    id_field: transactionId
+    description: Shipping transaction created when the seller accepts a shipping request.
+  - name: Delivery
+    id_field: deliveryId
+    description: The shipment attached to a transaction; carries tracking status.
+  - name: Dispute
+    id_field: disputeId
+    description: Buyer-seller dispute over a transaction, with evidence.
+  - name: Webhook
+    id_field: webhookId
+    description: Event subscription with endpoint URL, event list, and HMAC signing token.
+relationships:
+  - from: User
+    to: Item
+    type: has_many
+    via: seller ownership (bearer token identifies the seller)
+  - from: Item
+    to: Category
+    type: belongs_to
+    via: category_leaf_id
+  - from: Category
+    to: CategoryAttribute
+    type: has_many
+    via: /items/categories/{id}/attributes
+  - from: Item
+    to: Image
+    type: has_many
+    via: /items/{itemId}/images
+  - from: Item
+    to: Stock
+    type: has_one
+    via: stock.units
+  - from: User
+    to: ListingLimit
+    type: has_many
+    via: /items/limits (grouped by shared category_ids)
+  - from: ShippingRequest
+    to: Item
+    type: belongs_to
+    via: item_id
+  - from: ShippingRequest
+    to: Transaction
+    type: has_one
+    via: client-generated transaction_id on accept
+  - from: Transaction
+    to: Delivery
+    type: has_one
+    via: /transactions/{transactionId}/delivery/register
+  - from: Transaction
+    to: Dispute
+    type: has_one
+    via: dispute references the transaction
+  - from: User
+    to: Webhook
+    type: has_many
+    via: /webhooks
+  - from: Webhook
+    to: Item
+    type: observes
+    via: item/delivery/transaction/dispute event types carrying item_id

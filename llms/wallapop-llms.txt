@@ -1,0 +1,28 @@
+# llms.txt
+
+## Table of contents
+
+ - [Frequently Asked Questions](https://developers.wallapop.com/pages/api-essentials/faq.md)
+ - [Rate Limits](https://developers.wallapop.com/pages/api-essentials/rate-limits.md)
+ - [API Testing Policy](https://developers.wallapop.com/pages/api-essentials/testing-policy.md)
+ - [Content Governance](https://developers.wallapop.com/pages/api-essentials/content-governance.md)
+ - [Disputes](https://developers.wallapop.com/pages/api-essentials/disputes.md)
+ - [Returns](https://developers.wallapop.com/pages/api-essentials/returns.md)
+ - [API Resources](https://developers.wallapop.com/pages/api-essentials/resources.md)
+ - [Introduction](https://developers.wallapop.com/intro.md)
+ - [How Transactions Work](https://developers.wallapop.com/pages/api-essentials/how-transactions-work.md)
+ - [Transactions Guide](https://developers.wallapop.com/pages/guides/transactions.md)
+ - [Updates](https://developers.wallapop.com/pages/updates.md)
+ - [Custom Carrier Integration Guide](https://developers.wallapop.com/pages/guides/carrier-agnostic.md)
+ - [Authentication and Authorization Guide](https://developers.wallapop.com/pages/api-essentials/auth.md)
+ - [Publishing Items](https://developers.wallapop.com/pages/api-essentials/publishing-items.md)
+ - [Listing Guide](https://developers.wallapop.com/pages/guides/listing.md)
+ - [Quickstart](https://developers.wallapop.com/pages/guides/quickstart.md)
+ - [Webhooks Guide](https://developers.wallapop.com/pages/guides/webhooks.md)
+ - [Transactions Connect API](https://developers.wallapop.com/apis/delivery.md)
+ - [Items Connect API](https://developers.wallapop.com/apis/items.md)
+ - [Webhooks Connect API](https://developers.wallapop.com/apis/webhooks.md)
+ - [OAuth 2.0 Authorization Server API](https://developers.wallapop.com/code-samples/auth-refresh.md)
+ - [OAuth 2.0 Authorization Server API](https://developers.wallapop.com/code-samples/auth.md)
+ - [Webhook Example](https://developers.wallapop.com/code-samples/webhook.md)
+

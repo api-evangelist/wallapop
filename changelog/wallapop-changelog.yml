@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.wallapop.com/pages/updates
+description: >-
+  Wallapop Connect API updates page — a dated, human-readable changelog for the
+  developer platform. The API itself is unversioned (specs report 0.0.1);
+  changes are announced as monthly updates.
+scheme: dated-updates-page
+current_version: '0.0.1'
+entries:
+  - date: '2026-07'
+    breaking: false
+    additions:
+      - 'New endpoint: GET /items/limits (getMyItemsLimits) — returns the listing limits that apply to the authenticated account, grouped per limit, with shared category_ids, total capacity, used, and available slots.'
+  - date: '2025-12'
+    breaking: false
+    additions:
+      - 'New FAQ section covering authentication, listings management, and webhooks.'
+      - 'New endpoint: GET /items/inactive (userInactiveItems) — list items currently inactive.'
+      - 'Listing Guide expanded: subscription limits (active vs inactive items), stock-rotation best practices, external_id and license_plate catalog synchronization.'
+  - date: 'v1.0'
+    breaking: false
+    additions:
+      - 'Initial release of the Wallapop Connect API documentation: Items Connect API, Transactions Connect API, Webhooks Connect API, plus API Essentials (auth, resources, publishing, transactions, disputes/returns, rate limits, testing policy, content governance) and guides (listing, transactions, webhooks).'
