@@ -1,0 +1,3572 @@
+{
+  "item": [
+    {
+      "id": "9891472a-15cf-427b-8428-add6cd204f15",
+      "name": "Items",
+      "description": {
+        "content": "An item refers to a listing created by a user on the Wallapop marketplace, indicating their intent to sell. These items can include a diverse range of products.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0aa52683-018f-4a73-a381-bbf74009e8d2",
+          "name": "Create and publish an item",
+          "request": {
+            "name": "Create and publish an item",
+            "description": {
+              "content": "Create and publish an item for sale in Wallapop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The text fields for the item, such as the description and title, are written in a specific language.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"item\": {\n    \"category_leaf_id\": \"<string>\",\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"price\": {\n      \"cash_amount\": \"<number>\",\n      \"currency\": \"<string>\"\n    },\n    \"attributes\": {\n      \"key_0\": \"string\",\n      \"key_1\": true,\n      \"key_2\": 4565.816972497931\n    },\n    \"hashtags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"delivery\": {\n      \"allowed_by_user\": \"<boolean>\",\n      \"max_weight_kg\": \"<integer>\",\n      \"free_shipping\": \"<uuid>\"\n    }\n  },\n  \"main_image\": {\n    \"url\": \"<string>\"\n  },\n  \"stock\": {\n    \"units\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f497fefb-385b-412b-b6b9-ad088a6e6d6c",
+              "name": "The item was successfully created and published.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The text fields for the item, such as the description and title, are written in a specific language.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"item\": {\n    \"category_leaf_id\": \"9931\",\n    \"title\": \"Title example\",\n    \"description\": \"A renowned line of performance and lifestyle sneakers that offer superior comfort, support, and style both on and off the court.\",\n    \"price\": {\n      \"cash_amount\": 75.5,\n      \"currency\": \"EUR\"\n    },\n    \"attributes\": {\n      \"external_id\": \"407947058\",\n      \"brand\": \"Abc Design\",\n      \"size\": 34,\n      \"condition\": \"new\",\n      \"color\": \"yellow\"\n    },\n    \"hashtags\": [\n      \"awesome\",\n      \"original\"\n    ],\n    \"delivery\": {\n      \"allowed_by_user\": true,\n      \"max_weight_kg\": 10,\n      \"free_shipping\": false\n    }\n  },\n  \"main_image\": {\n    \"url\": \"http://cdn.portal.com/image129.jpg\"\n  },\n  \"stock\": {\n    \"units\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"4z4g109xo8zy\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4217bc8-6d3e-4db7-a211-0877c2dcaab0",
+              "name": "Bad request. The server cannot process the request due to client-side issues, such as malformed syntax or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The text fields for the item, such as the description and title, are written in a specific language.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"item\": {\n    \"category_leaf_id\": \"9931\",\n    \"title\": \"Title example\",\n    \"description\": \"A renowned line of performance and lifestyle sneakers that offer superior comfort, support, and style both on and off the court.\",\n    \"price\": {\n      \"cash_amount\": 75.5,\n      \"currency\": \"EUR\"\n    },\n    \"attributes\": {\n      \"external_id\": \"407947058\",\n      \"brand\": \"Abc Design\",\n      \"size\": 34,\n      \"condition\": \"new\",\n      \"color\": \"yellow\"\n    },\n    \"hashtags\": [\n      \"awesome\",\n      \"original\"\n    ],\n    \"delivery\": {\n      \"allowed_by_user\": true,\n      \"max_weight_kg\": 10,\n      \"free_shipping\": false\n    }\n  },\n  \"main_image\": {\n    \"url\": \"http://cdn.portal.com/image129.jpg\"\n  },\n  \"stock\": {\n    \"units\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ba6c4cc-234f-4794-83d1-392659ab24e4",
+          "name": "List items for sale",
+          "request": {
+            "name": "List items for sale",
+            "description": {
+              "content": "Provides a list of items you have published for sale and that are available for buyers on Wallapop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<string>",
+                  "description": "If there is a previous request, include the \"next\" pagination token from the response's metadata."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3717cbc7-fec8-44ee-886f-a2a55597cd32",
+              "name": "The list of items was successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"xpzpvny244z3\",\n      \"title\": \"Air Jordan shoes\",\n      \"images\": [\n        {\n          \"id\": \"npj9rg80kmje\",\n          \"urls\": {\n            \"small\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W320\",\n            \"medium\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W640\",\n            \"big\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W800\"\n          }\n        }\n      ],\n      \"price\": {\n        \"cash_amount\": 75.5,\n        \"currency\": \"EUR\"\n      },\n      \"reserved\": {\n        \"flag\": false\n      },\n      \"inactive\": {\n        \"flag\": false\n      },\n      \"expired\": {\n        \"flag\": false\n      }\n    },\n    {\n      \"id\": \"xpzpvny244z3\",\n      \"title\": \"Air Jordan shoes\",\n      \"images\": [\n        {\n          \"id\": \"npj9rg80kmje\",\n          \"urls\": {\n            \"small\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W320\",\n            \"medium\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W640\",\n            \"big\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W800\"\n          }\n        }\n      ],\n      \"price\": {\n        \"cash_amount\": 75.5,\n        \"currency\": \"EUR\"\n      },\n      \"reserved\": {\n        \"flag\": true\n      },\n      \"inactive\": {\n        \"flag\": false\n      },\n      \"expired\": {\n        \"flag\": false\n      }\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"next\": \"SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cae4da1c-5fe5-4f25-b682-ecf26fe92dae",
+              "name": "Bad request. The server cannot process the request due to client-side issues, such as malformed syntax or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a82c0c1b-e005-4b80-a5e0-9ec6f90f421d",
+              "name": "Unauthorized. The request lacks authentication credentials or the provided credentials are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "840060b8-e5c8-4624-b4e0-c26d83ac9285",
+          "name": "Retrieve item details",
+          "request": {
+            "name": "Retrieve item details",
+            "description": {
+              "content": "Retrieves details about an item that you have for sale.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) The item ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8e86b69-033f-4ee4-88cd-c52609b68879",
+              "name": "The information about the item has been successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"xpzpvny244z3\",\n  \"title\": \"Air Jordan Basketball Shoes\",\n  \"description\": \"A renowned line of performance and lifestyle sneakers that offer superior comfort, support, and style both on and off the court.\",\n  \"category_leaf_id\": \"9931\",\n  \"images\": [\n    {\n      \"id\": \"npj9rg80kmje\",\n      \"urls\": {\n        \"small\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W320\",\n        \"medium\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W640\",\n        \"big\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W800\"\n      }\n    }\n  ],\n  \"price\": {\n    \"cash_amount\": 75.5,\n    \"currency\": \"EUR\"\n  },\n  \"attributes\": {\n    \"external_id\": \"407947058\",\n    \"brand\": \"Abc Design\",\n    \"size\": 34,\n    \"condition\": \"new\",\n    \"color\": \"yellow\"\n  },\n  \"hashtags\": [\n    \"awesome\",\n    \"original\"\n  ],\n  \"delivery\": {\n    \"allowed_by_user\": true,\n    \"max_weight_kg\": 10,\n    \"free_shipping\": false\n  },\n  \"reserved\": {\n    \"flag\": false\n  },\n  \"inactive\": {\n    \"flag\": false\n  },\n  \"expired\": {\n    \"flag\": false\n  },\n  \"sold\": {\n    \"flag\": true\n  },\n  \"stock\": {\n    \"units\": \"<integer>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea04ca61-3996-4f70-918b-7e30b88fe2be",
+              "name": "Bad request. The server cannot process the request due to client-side issues, such as malformed syntax or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e40e4e0-5455-4d8c-b969-ced55beea84d",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15fd7695-163d-4bb4-a67f-548f42233456",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "333d5bc0-1f8e-4f12-b410-dbee010103b3",
+          "name": "Update an item",
+          "request": {
+            "name": "Update an item",
+            "description": {
+              "content": "Update one of your items.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) The item ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The text fields for the item, such as the description and title, are written in a specific language.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"item\": {\n    \"category_leaf_id\": \"<string>\",\n    \"title\": \"<string>\",\n    \"description\": \"<string>\",\n    \"price\": {\n      \"cash_amount\": \"<number>\",\n      \"currency\": \"<string>\"\n    },\n    \"attributes\": {\n      \"key_0\": 2020.2194626845815\n    },\n    \"hashtags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"delivery\": {\n      \"allowed_by_user\": \"<boolean>\",\n      \"max_weight_kg\": \"<integer>\",\n      \"free_shipping\": \"<uuid>\"\n    }\n  },\n  \"show_discount\": \"<boolean>\",\n  \"stock\": {\n    \"units\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f211b5a-56cb-4d14-b9fa-fb91eec06a80",
+              "name": "No Content. The resource was successfully updated and there is no content to display.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The text fields for the item, such as the description and title, are written in a specific language.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"item\": {\n    \"category_leaf_id\": \"9931\",\n    \"title\": \"Title example\",\n    \"description\": \"A renowned line of performance and lifestyle sneakers that offer superior comfort, support, and style both on and off the court.\",\n    \"price\": {\n      \"cash_amount\": 75.5,\n      \"currency\": \"EUR\"\n    },\n    \"attributes\": {\n      \"external_id\": \"407947058\",\n      \"brand\": \"Abc Design\",\n      \"size\": 34,\n      \"condition\": \"new\",\n      \"color\": \"yellow\"\n    },\n    \"hashtags\": [\n      \"awesome\",\n      \"original\"\n    ],\n    \"delivery\": {\n      \"allowed_by_user\": true,\n      \"max_weight_kg\": 10,\n      \"free_shipping\": false\n    }\n  },\n  \"show_discount\": false,\n  \"stock\": {\n    \"units\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "93bf3235-0117-4ac5-ad6a-742d1abba463",
+              "name": "Bad request. The server cannot process the request due to client-side issues, such as malformed syntax or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The text fields for the item, such as the description and title, are written in a specific language.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"item\": {\n    \"category_leaf_id\": \"9931\",\n    \"title\": \"Title example\",\n    \"description\": \"A renowned line of performance and lifestyle sneakers that offer superior comfort, support, and style both on and off the court.\",\n    \"price\": {\n      \"cash_amount\": 75.5,\n      \"currency\": \"EUR\"\n    },\n    \"attributes\": {\n      \"external_id\": \"407947058\",\n      \"brand\": \"Abc Design\",\n      \"size\": 34,\n      \"condition\": \"new\",\n      \"color\": \"yellow\"\n    },\n    \"hashtags\": [\n      \"awesome\",\n      \"original\"\n    ],\n    \"delivery\": {\n      \"allowed_by_user\": true,\n      \"max_weight_kg\": 10,\n      \"free_shipping\": false\n    }\n  },\n  \"show_discount\": false,\n  \"stock\": {\n    \"units\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ac3c8e9-c2bf-4072-ae09-6d95d2d4a541",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The text fields for the item, such as the description and title, are written in a specific language.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"item\": {\n    \"category_leaf_id\": \"9931\",\n    \"title\": \"Title example\",\n    \"description\": \"A renowned line of performance and lifestyle sneakers that offer superior comfort, support, and style both on and off the court.\",\n    \"price\": {\n      \"cash_amount\": 75.5,\n      \"currency\": \"EUR\"\n    },\n    \"attributes\": {\n      \"external_id\": \"407947058\",\n      \"brand\": \"Abc Design\",\n      \"size\": 34,\n      \"condition\": \"new\",\n      \"color\": \"yellow\"\n    },\n    \"hashtags\": [\n      \"awesome\",\n      \"original\"\n    ],\n    \"delivery\": {\n      \"allowed_by_user\": true,\n      \"max_weight_kg\": 10,\n      \"free_shipping\": false\n    }\n  },\n  \"show_discount\": false,\n  \"stock\": {\n    \"units\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "931d876f-26b4-46d3-8a02-3ff78552d351",
+              "name": "Not found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The text fields for the item, such as the description and title, are written in a specific language.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"item\": {\n    \"category_leaf_id\": \"9931\",\n    \"title\": \"Title example\",\n    \"description\": \"A renowned line of performance and lifestyle sneakers that offer superior comfort, support, and style both on and off the court.\",\n    \"price\": {\n      \"cash_amount\": 75.5,\n      \"currency\": \"EUR\"\n    },\n    \"attributes\": {\n      \"external_id\": \"407947058\",\n      \"brand\": \"Abc Design\",\n      \"size\": 34,\n      \"condition\": \"new\",\n      \"color\": \"yellow\"\n    },\n    \"hashtags\": [\n      \"awesome\",\n      \"original\"\n    ],\n    \"delivery\": {\n      \"allowed_by_user\": true,\n      \"max_weight_kg\": 10,\n      \"free_shipping\": false\n    }\n  },\n  \"show_discount\": false,\n  \"stock\": {\n    \"units\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "66982351-173d-4458-a8c6-8df9216cb25d",
+              "name": "There is a concurrent modification conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The text fields for the item, such as the description and title, are written in a specific language.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"item\": {\n    \"category_leaf_id\": \"9931\",\n    \"title\": \"Title example\",\n    \"description\": \"A renowned line of performance and lifestyle sneakers that offer superior comfort, support, and style both on and off the court.\",\n    \"price\": {\n      \"cash_amount\": 75.5,\n      \"currency\": \"EUR\"\n    },\n    \"attributes\": {\n      \"external_id\": \"407947058\",\n      \"brand\": \"Abc Design\",\n      \"size\": 34,\n      \"condition\": \"new\",\n      \"color\": \"yellow\"\n    },\n    \"hashtags\": [\n      \"awesome\",\n      \"original\"\n    ],\n    \"delivery\": {\n      \"allowed_by_user\": true,\n      \"max_weight_kg\": 10,\n      \"free_shipping\": false\n    }\n  },\n  \"show_discount\": false,\n  \"stock\": {\n    \"units\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69b515d0-009f-4491-abd1-646b75796c3b",
+          "name": "Delete an item",
+          "request": {
+            "name": "Delete an item",
+            "description": {
+              "content": "Delete a specific item by providing its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":itemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) The item ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dff81050-518a-4f29-bae8-1887edc25875",
+              "name": "No Content. The resource was successfully deleted and there is no content to display.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a011f37f-5863-4d65-ac8f-dce15c67b4ba",
+              "name": "Bad request. The server cannot process the request due to client-side issues, such as malformed syntax or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01357c92-ca21-463a-b5fb-255706377a25",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc02ead5-452d-4602-a927-1343bdd3a8c5",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The item ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3eba791a-4410-4150-a11e-e4aeae8068a8",
+          "name": "Add a image to an item",
+          "request": {
+            "name": "Add a image to an item",
+            "description": {
+              "content": "Add an additional image to the Wallapop item page. You can also arrange the display order of these images.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":itemId",
+                "images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) The ID of the item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<string>\",\n  \"order\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f511c839-06d5-41bb-8460-c86583635444",
+              "name": "The image was successfully added to the item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"http://cdn.portal.com/image129.jpg\",\n  \"order\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0j2rmkq7vr6y\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "294b335b-ee4d-40dd-aa02-4d102b2e10d5",
+              "name": "Bad request. The server cannot process the request due to client-side issues, such as malformed syntax or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"http://cdn.portal.com/image129.jpg\",\n  \"order\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19616b70-dad8-4263-bef3-cb7f0ca0f072",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"http://cdn.portal.com/image129.jpg\",\n  \"order\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a522fb5-3962-4057-84f8-137240267744",
+              "name": "There is a concurrent modification conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"http://cdn.portal.com/image129.jpg\",\n  \"order\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a4e47978-c095-4031-bd22-19e7c7443749",
+          "name": "Delete an image from an item",
+          "request": {
+            "name": "Delete an image from an item",
+            "description": {
+              "content": "Delete a image from an item by providing the ID of the item and image.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":itemId",
+                "images",
+                ":imageId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemId",
+                  "description": "(Required) The ID of the item."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "imageId",
+                  "description": "(Required) The ID of the image."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c7f06c3-8286-49e7-8c0e-9c66843cf8da",
+              "name": "No Content. The resource was successfully deleted and there is no content to display.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId",
+                    "images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the item."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The ID of the image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c7c2d7d1-3baf-4b76-88b1-5149eba0175f",
+              "name": "Bad request. The server cannot process the request due to client-side issues, such as malformed syntax or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId",
+                    "images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the item."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The ID of the image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23e55f4c-7faa-4c2b-9664-40df4ea245c4",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId",
+                    "images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the item."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The ID of the image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08dd9997-cc98-4bed-a41b-5f8f3f0c4480",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId",
+                    "images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the item."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The ID of the image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1e98cbdf-2f79-4472-83b5-ede324dd61e5",
+              "name": "There is a concurrent modification conflict.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":itemId",
+                    "images",
+                    ":imageId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemId",
+                      "description": "(Required) The ID of the item."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "imageId",
+                      "description": "(Required) The ID of the image."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2d6ae6b-fc05-418e-b928-e139665751a8",
+          "name": "Mark an item as sold",
+          "request": {
+            "name": "Mark an item as sold",
+            "description": {
+              "content": "Only applies to items sold outside of Wallapop. Change the item's status to \"sold\" after the payment has been completed outside of Wallapop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":id",
+                "sold"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a8756a0-676b-4318-8c3d-673b421c8490",
+              "name": "The item was successfully marked as \"sold\".",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "sold"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56a96551-d06c-44f5-baca-2dfc85d12137",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "sold"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73f16cd7-7e1f-4a71-9934-7a3d98518f2c",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "sold"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34b6ba8e-c8be-49b2-8da0-f6fc9bbb05a0",
+          "name": "Publish an inactive item",
+          "request": {
+            "name": "Publish an inactive item",
+            "description": {
+              "content": "If you have deactivated a published item, you can re-publish it by using this endpoint. Requires a Wallapop Pro subscription. Refer to [Activating and deactivating products](https://ayuda.wallapop.com/hc/es-es/articles/23521878501137-Activaci%C3%B3n-y-desactivaci%C3%B3n-de-productos).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":id",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92e82506-d10d-408a-9a0a-321cbbba71dd",
+              "name": "No Content. The resource was successfully published and there is no content to display.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f0042dcb-a3ab-4b72-8db8-dd16fd8a2f94",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71ee84c8-41b0-488c-8012-903f5d896796",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9feb19bf-500d-47ab-94ad-80f3d8cd24e9",
+          "name": "Deactivate a published item",
+          "request": {
+            "name": "Deactivate a published item",
+            "description": {
+              "content": "Deactivate a published item to hide it from buyers on Wallapop. Requires a Wallapop Pro subscription. Refer to [Activating and deactivating products](https://ayuda.wallapop.com/hc/es-es/articles/23521878501137-Activaci%C3%B3n-y-desactivaci%C3%B3n-de-productos) for more details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":id",
+                "inactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d8cc1f7-bee4-409d-8013-63709b07aeb0",
+              "name": "The item was successfully deactivated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "inactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b7035727-3a06-44da-8752-3f5d0472fc3c",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "inactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "254211ef-aeea-4005-b69f-bb2004ccec82",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "inactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be568b99-264c-40f0-bff6-16a9d5d9afcb",
+          "name": "Reserve an item",
+          "request": {
+            "name": "Reserve an item",
+            "description": {
+              "content": "Reserve a published item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":id",
+                "reserve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3e2e6d9-0bbc-4b3f-a052-ea6d6b58ba36",
+              "name": "The item was successfully reserved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "reserve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6bdd31d3-6c33-4723-82c3-e043cbd1a7cf",
+              "name": "Bad request. The server cannot process the request due to client-side issues, such as malformed syntax or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "reserve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "378aa3a8-a47b-4a86-b841-f25e72b46097",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "reserve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc61e9ad-0542-4775-8fcd-14da5c4943b6",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "reserve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d99b9914-7c91-4819-98db-2543b1017ede",
+          "name": "Cancel an item reservation",
+          "request": {
+            "name": "Cancel an item reservation",
+            "description": {
+              "content": "Cancel an item reservation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                ":id",
+                "unreserve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab3a74fb-f6db-43bf-ae85-4a48c0585120",
+              "name": "The item reservation was successfully cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "unreserve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19866adb-e291-45e2-a0e4-b80de871750d",
+              "name": "Bad request. The server cannot process the request due to client-side issues, such as malformed syntax or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "unreserve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77460e76-4fa9-4832-9fb5-03e7f2e60f0e",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "unreserve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31484872-493d-43c9-9d2f-a9210363f978",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    ":id",
+                    "unreserve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da0b5f37-aa90-4803-980c-c1c79bd58453",
+          "name": "Retrieve all categories",
+          "request": {
+            "name": "Retrieve all categories",
+            "description": {
+              "content": "Retrieve Wallaop's complete category hierarchy for items. This list will help you identify the categories that best classify the items you want to sell.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The language of the category title will be returned when it has translations in different languages.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c41a7b99-e97d-45d7-8857-3941a571c846",
+              "name": "The categories were successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The language of the category title will be returned when it has translations in different languages.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"categories\": [\n    {\n      \"id\": 24200,\n      \"parent_id\": 24200,\n      \"name\": \"Tecnología y electrónica\",\n      \"assignable_to_item\": false,\n      \"subcategories\": [\n        {\n          \"id\": 10414,\n          \"parent_id\": 24200,\n          \"name\": \"TV\",\n          \"assignable_to_item\": true\n        }\n      ]\n    },\n    {\n      \"id\": 24200,\n      \"parent_id\": 24200,\n      \"name\": \"Tecnología y electrónica\",\n      \"assignable_to_item\": false,\n      \"subcategories\": [\n        {\n          \"id\": 10414,\n          \"parent_id\": 24200,\n          \"name\": \"TV\",\n          \"assignable_to_item\": true\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7cfc171-2d76-4fc0-ad47-f36ead9396cc",
+          "name": "Retrieve a category's attributes",
+          "request": {
+            "name": "Retrieve a category's attributes",
+            "description": {
+              "content": "Returns the acceptable attributes for items categorized by category, including mandatory and optional attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "categories",
+                ":id",
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the category."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The language used to present the attribute title when it has translations in multiple languages.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c07d8c76-5500-4f95-a3a1-0bf0373daa9a",
+              "name": "The category's attributes were successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "categories",
+                    ":id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the category."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The language used to present the attribute title when it has translations in multiple languages.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attributes\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"discrete_values\",\n      \"is_mandatory\": true,\n      \"options\": {\n        \"max_choices\": 3350,\n        \"values\": [\n          {\n            \"id\": \"string\",\n            \"title\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"mandatory_by_date\": \"2024-12-30\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"discrete_values\",\n      \"is_mandatory\": true,\n      \"options\": {\n        \"max_choices\": 7312,\n        \"values\": [\n          {\n            \"id\": \"string\",\n            \"title\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"mandatory_by_date\": \"2024-12-30\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "041060b5-0d3f-4b04-bafc-66b158f731da",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "categories",
+                    ":id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the category."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The language used to present the attribute title when it has translations in multiple languages.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be4a6701-70fd-4a0a-8ebb-1019a23d2745",
+          "name": "Retrieve the authenticated user's listing limits",
+          "request": {
+            "name": "Retrieve the authenticated user's listing limits",
+            "description": {
+              "content": "Returns the listing limits that apply to the authenticated user, grouped per limit. Each entry lists the categories that share the limit along with the total capacity, the number of items currently counted against it, and the remaining slots.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "limits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "627ebf81-205e-4047-a1c1-db1bbf01d974",
+              "name": "The listing limits were successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limits\": [\n    {\n      \"used\": 1,\n      \"category_ids\": [\n        12461,\n        12463,\n        12465,\n        12467\n      ],\n      \"total\": 200,\n      \"available\": 199\n    },\n    {\n      \"used\": 1,\n      \"category_ids\": [\n        12461,\n        12463,\n        12465,\n        12467\n      ],\n      \"total\": 200,\n      \"available\": 199\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "156b7d22-dab0-4d35-96b2-536deea61e1c",
+              "name": "Unauthorized. The request lacks authentication credentials or the provided credentials are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "limits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "109b7b83-d920-465b-938f-56d9b14788ed",
+          "name": "List inactive items",
+          "request": {
+            "name": "List inactive items",
+            "description": {
+              "content": "Returns a list of items that you have currently inactive (not available for buyers).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "inactive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<string>",
+                  "description": "If there is a previous request, include the \"next\" pagination token from the response's metadata."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3208c3b8-819b-49ee-95b4-1d7d830a83da",
+              "name": "The list of inactive items was successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "inactive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"xpzpvny244z3\",\n      \"title\": \"Air Jordan shoes\",\n      \"images\": [\n        {\n          \"id\": \"npj9rg80kmje\",\n          \"urls\": {\n            \"small\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W320\",\n            \"medium\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W640\",\n            \"big\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W800\"\n          }\n        }\n      ],\n      \"price\": {\n        \"cash_amount\": 75.5,\n        \"currency\": \"EUR\"\n      },\n      \"reserved\": {\n        \"flag\": false\n      },\n      \"inactive\": {\n        \"flag\": false\n      },\n      \"expired\": {\n        \"flag\": false\n      }\n    },\n    {\n      \"id\": \"xpzpvny244z3\",\n      \"title\": \"Air Jordan shoes\",\n      \"images\": [\n        {\n          \"id\": \"npj9rg80kmje\",\n          \"urls\": {\n            \"small\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W320\",\n            \"medium\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W640\",\n            \"big\": \"http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W800\"\n          }\n        }\n      ],\n      \"price\": {\n        \"cash_amount\": 75.5,\n        \"currency\": \"EUR\"\n      },\n      \"reserved\": {\n        \"flag\": true\n      },\n      \"inactive\": {\n        \"flag\": false\n      },\n      \"expired\": {\n        \"flag\": false\n      }\n    }\n  ],\n  \"meta\": {\n    \"pagination\": {\n      \"next\": \"SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f809258-adcd-4449-960b-8884dd513797",
+              "name": "Bad request. The server cannot process the request due to client-side issues, such as malformed syntax or invalid parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "inactive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "721a8410-f9f3-47e2-a2f6-30f0d3b7eee6",
+              "name": "Unauthorized. The request lacks authentication credentials or the provided credentials are invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "inactive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "since",
+                      "value": "SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://connect.wallapop.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "643976ea-f7f7-4ec3-bb1c-e4c5ad5d3418",
+    "name": "Connect Categories Items API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Items Connect API streamlines the listing process by allowing sellers to programmatically post items for sale, offering an efficient alternative to creating individual item listings through the user interface.\n",
+      "type": "text/plain"
+    }
+  }
+}

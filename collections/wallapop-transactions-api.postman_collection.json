@@ -1,0 +1,1224 @@
+{
+  "item": [
+    {
+      "id": "7b76a15b-f666-47c5-acba-d7181fb1ad61",
+      "name": "Transactions",
+      "description": {
+        "content": "A shipping transaction is initiated when a seller accepts a shipping request.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e0b8465-347b-458d-8771-3b7756ca54f0",
+          "name": "Retrieve pending shipping requests",
+          "request": {
+            "name": "Retrieve pending shipping requests",
+            "description": {
+              "content": "Returns a list of pending shipping requests awaiting the seller's acceptance. When a buyer purchases an item, a pending shipping request is generated. A request remains pending until the seller accepts it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                "requests",
+                "pending"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c6fb63f-3b03-4c45-8b43-9c4f423af6f1",
+              "name": "Successfully retrieved a list of pending shipping requests.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "requests",
+                    "pending"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requests\": [\n    {\n      \"id\": \"bf44bd9c-b9fc-4e63-ba48-78539979738a\",\n      \"item_id\": \"3e9wzv7zlmdr\",\n      \"item_ids\": [\n        \"3e9wzv7zlmdr\",\n        \"abc123xyz\",\n        \"another-id\"\n      ],\n      \"seller_revenue\": {\n        \"item_price\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"delivery_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"fees_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"total\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        }\n      },\n      \"buyer_cost\": {\n        \"item_price\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"delivery_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"fees_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"total\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        }\n      },\n      \"buyer_information\": {\n        \"name\": \"John Doe\",\n        \"street\": \"123 Main St\",\n        \"postal_code\": \"string\",\n        \"city\": \"Barcelona\",\n        \"region\": \"Catalonia\",\n        \"country\": \"ES\",\n        \"phone_number\": \"+34612345678\"\n      },\n      \"buyer_user_id\": \"v9owzy2j5g7x\",\n      \"carrier_drop_off_options\": {\n        \"options\": [\n          {\n            \"drop_off_mode\": \"post office\",\n            \"carrier\": \"Seur\",\n            \"carrier_drop_off_cost\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"drop_off_mode\": \"post office\",\n            \"carrier\": \"Seur\",\n            \"carrier_drop_off_cost\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"bf44bd9c-b9fc-4e63-ba48-78539979738a\",\n      \"item_id\": \"3e9wzv7zlmdr\",\n      \"item_ids\": [\n        \"3e9wzv7zlmdr\",\n        \"abc123xyz\",\n        \"another-id\"\n      ],\n      \"seller_revenue\": {\n        \"item_price\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"delivery_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"fees_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"total\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        }\n      },\n      \"buyer_cost\": {\n        \"item_price\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"delivery_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"fees_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"total\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        }\n      },\n      \"buyer_information\": {\n        \"name\": \"John Doe\",\n        \"street\": \"123 Main St\",\n        \"postal_code\": \"string\",\n        \"city\": \"Barcelona\",\n        \"region\": \"Catalonia\",\n        \"country\": \"ES\",\n        \"phone_number\": \"+34612345678\"\n      },\n      \"buyer_user_id\": \"v9owzy2j5g7x\",\n      \"carrier_drop_off_options\": {\n        \"options\": [\n          {\n            \"drop_off_mode\": \"post office\",\n            \"carrier\": \"Seur\",\n            \"carrier_drop_off_cost\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"drop_off_mode\": \"post office\",\n            \"carrier\": \"Seur\",\n            \"carrier_drop_off_cost\": {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"currency\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ]\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "370839bc-893d-4eb4-bb6a-67437498fee1",
+          "name": "Retrieve a shipping request",
+          "request": {
+            "name": "Retrieve a shipping request",
+            "description": {
+              "content": "Obtain the details of a specific shipping request by providing its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                "requests",
+                ":requestId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "requestId",
+                  "description": "(Required) The shipping request ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6f68526-5dc9-46ca-8013-e38a0a5b897a",
+              "name": "The shipping request was successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) The shipping request ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"bf44bd9c-b9fc-4e63-ba48-78539979738a\",\n  \"item_ids\": [\n    \"3e9wzv7zlmdr\",\n    \"abc123xyz\",\n    \"another-id\"\n  ],\n  \"seller_revenue\": {\n    \"item_price\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"delivery_cost\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"fees_cost\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"total\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    }\n  },\n  \"buyer_cost\": {\n    \"item_price\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"delivery_cost\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"fees_cost\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"total\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    }\n  },\n  \"buyer_information\": {\n    \"name\": \"John Doe\",\n    \"street\": \"123 Main St\",\n    \"postal_code\": \"string\",\n    \"city\": \"Barcelona\",\n    \"region\": \"Catalonia\",\n    \"country\": \"ES\",\n    \"phone_number\": \"+34612345678\"\n  },\n  \"buyer_user_id\": \"v9owzy2j5g7x\",\n  \"carrier_drop_off_options\": {\n    \"options\": [\n      {\n        \"drop_off_mode\": \"post office\",\n        \"carrier\": \"Seur\",\n        \"carrier_drop_off_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        }\n      },\n      {\n        \"drop_off_mode\": \"post office\",\n        \"carrier\": \"Seur\",\n        \"carrier_drop_off_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        }\n      }\n    ]\n  },\n  \"status\": \"pending\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8889a59d-e113-4bd3-9425-1eda32f5026e",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) The shipping request ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ACCEPT_REQUEST\",\n  \"message\": \"Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e38d0191-5501-4a04-9afe-2d3e44348546",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "requests",
+                    ":requestId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) The shipping request ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ACCEPT_REQUEST\",\n  \"message\": \"Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5591be3b-beec-4ce6-b151-c9ddb77129eb",
+          "name": "Accept a shipping request with home pickup",
+          "request": {
+            "name": "Accept a shipping request with home pickup",
+            "description": {
+              "content": "Accept a shipping request with home pickup, where the carrier collects the package directly from the seller's shipping address. The client app must generate and pass a `transaction_id`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                "requests",
+                ":requestId",
+                "accept",
+                "home-pickup"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "requestId",
+                  "description": "(Required) The shipping request ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transaction_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8dbde5aa-39ea-4fca-8081-d548eea7e95e",
+              "name": "The shipping request was successfully accepted for home pickup. There is no content to display.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "requests",
+                    ":requestId",
+                    "accept",
+                    "home-pickup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) The shipping request ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction_id\": \"a1b2c3d4-e5f6-1234-5678-90abcdef1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "13daf5f1-f1dc-4618-8142-17fe021add47",
+              "name": "Conflict. There is a conflict with the current state of the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "requests",
+                    ":requestId",
+                    "accept",
+                    "home-pickup"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) The shipping request ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction_id\": \"a1b2c3d4-e5f6-1234-5678-90abcdef1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ACCEPT_REQUEST\",\n  \"message\": \"Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "917a60b8-43c3-4ca7-a8c2-89816c577f25",
+          "name": "Accept a shipping request with post office drop off",
+          "request": {
+            "name": "Accept a shipping request with post office drop off",
+            "description": {
+              "content": "Accept a shipping request for post office drop-off, where the seller delivers the package to a designated post office. The client app must generate and pass a `transaction_id`.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                "requests",
+                ":requestId",
+                "accept",
+                "post-office"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "requestId",
+                  "description": "(Required) The shipping request ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transaction_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5dae01b4-5157-4829-a81e-0eb68616bcef",
+              "name": "The shipping request was successfully accepted for post office drop off.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "requests",
+                    ":requestId",
+                    "accept",
+                    "post-office"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) The shipping request ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction_id\": \"a1b2c3d4-e5f6-1234-5678-90abcdef1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "50e6124e-4fb8-471c-b272-bcf64e08f37c",
+              "name": "Conflict. There is a conflict with the current state of the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "requests",
+                    ":requestId",
+                    "accept",
+                    "post-office"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "requestId",
+                      "description": "(Required) The shipping request ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transaction_id\": \"a1b2c3d4-e5f6-1234-5678-90abcdef1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ACCEPT_REQUEST\",\n  \"message\": \"Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09234aed-6ac0-4fe9-b35c-791fd5203b8d",
+          "name": "Retrieve pending shipping transactions",
+          "request": {
+            "name": "Retrieve pending shipping transactions",
+            "description": {
+              "content": "Returns a list of pending shipping transactions. A shipping transaction is created when the seller accepts the corresponding shipping request. A pending transaction is one that has not been accepted, failed, rejected, cancelled, or requires payment.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                "pending"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "740ed9dc-d95e-4c6e-b3bb-0abe8a82c843",
+              "name": "Successfully retrieved pending shipping transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "pending"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactions\": [\n    {\n      \"id\": \"6ea1b3ec-7ac2-40c5-9ed0-d315b2f5f5bd\",\n      \"request_id\": \"bf44bd9c-b9fc-4e63-ba48-78539979738a\",\n      \"item_id\": \"3e9wzv7zlmdr\",\n      \"item_ids\": [\n        \"3e9wzv7zlmdr\",\n        \"abc123xyz\",\n        \"another-id\"\n      ],\n      \"seller_revenue\": {\n        \"item_price\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"delivery_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"fees_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"total\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        }\n      },\n      \"buyer_cost\": {\n        \"item_price\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"delivery_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"fees_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"total\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        }\n      },\n      \"buyer_user_id\": \"v9owzy2j5g7x\",\n      \"delivery_status\": \"delivered\",\n      \"carrier_drop_off_mode\": \"home pickup\",\n      \"carrier\": \"Seur\",\n      \"carrier_tracking_code\": \"SEURESITM1S8DWA\",\n      \"delivery_label_url\": \"https://delivery-labels-test.wallapop.com/a98f3a24-afb2-40d9-a0b6-5285224794fb.jpg\",\n      \"delivery_id\": \"ffbb8752-bde8-40e4-ba59-bf6354f7edff\",\n      \"buyer_information\": {\n        \"name\": \"John Doe\",\n        \"street\": \"123 Main St\",\n        \"postal_code\": \"string\",\n        \"city\": \"Barcelona\",\n        \"region\": \"Catalonia\",\n        \"country\": \"ES\",\n        \"phone_number\": \"+34612345678\"\n      }\n    },\n    {\n      \"id\": \"6ea1b3ec-7ac2-40c5-9ed0-d315b2f5f5bd\",\n      \"request_id\": \"bf44bd9c-b9fc-4e63-ba48-78539979738a\",\n      \"item_id\": \"3e9wzv7zlmdr\",\n      \"item_ids\": [\n        \"3e9wzv7zlmdr\",\n        \"abc123xyz\",\n        \"another-id\"\n      ],\n      \"seller_revenue\": {\n        \"item_price\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"delivery_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"fees_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"total\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        }\n      },\n      \"buyer_cost\": {\n        \"item_price\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"delivery_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"fees_cost\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        },\n        \"total\": {\n          \"amount\": 300.89,\n          \"currency\": \"EUR\"\n        }\n      },\n      \"buyer_user_id\": \"v9owzy2j5g7x\",\n      \"delivery_status\": \"delivered\",\n      \"carrier_drop_off_mode\": \"home pickup\",\n      \"carrier\": \"Seur\",\n      \"carrier_tracking_code\": \"SEURESITM1S8DWA\",\n      \"delivery_label_url\": \"https://delivery-labels-test.wallapop.com/a98f3a24-afb2-40d9-a0b6-5285224794fb.jpg\",\n      \"delivery_id\": \"ffbb8752-bde8-40e4-ba59-bf6354f7edff\",\n      \"buyer_information\": {\n        \"name\": \"John Doe\",\n        \"street\": \"123 Main St\",\n        \"postal_code\": \"string\",\n        \"city\": \"Barcelona\",\n        \"region\": \"Catalonia\",\n        \"country\": \"ES\",\n        \"phone_number\": \"+34612345678\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c8e664d-f902-42dd-a381-0ceebda1adbd",
+          "name": "Retrieve a shipping transaction",
+          "request": {
+            "name": "Retrieve a shipping transaction",
+            "description": {
+              "content": "Obtain the details of a specific shipping transaction by providing its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transactionId",
+                  "description": "(Required) The transaction ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb351aba-aeaa-4190-86e8-cd69a8cff7e5",
+              "name": "Successfully retrieved the shipping transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) The transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"6ea1b3ec-7ac2-40c5-9ed0-d315b2f5f5bd\",\n  \"request_id\": \"bf44bd9c-b9fc-4e63-ba48-78539979738a\",\n  \"item_ids\": [\n    \"3e9wzv7zlmdr\",\n    \"abc123xyz\",\n    \"another-id\"\n  ],\n  \"seller_revenue\": {\n    \"item_price\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"delivery_cost\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"fees_cost\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"total\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    }\n  },\n  \"buyer_cost\": {\n    \"item_price\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"delivery_cost\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"fees_cost\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    },\n    \"total\": {\n      \"amount\": 300.89,\n      \"currency\": \"EUR\"\n    }\n  },\n  \"buyer_user_id\": \"v9owzy2j5g7x\",\n  \"delivery_status\": \"delivered\",\n  \"carrier_drop_off_mode\": \"home pickup\",\n  \"carrier\": \"Seur\",\n  \"carrier_tracking_code\": \"SEURESITM1S8DWA\",\n  \"delivery_label_url\": \"https://delivery-labels-test.wallapop.com/a98f3a24-afb2-40d9-a0b6-5285224794fb.jpg\",\n  \"delivery_id\": \"ffbb8752-bde8-40e4-ba59-bf6354f7edff\",\n  \"buyer_information\": {\n    \"name\": \"John Doe\",\n    \"street\": \"123 Main St\",\n    \"postal_code\": \"string\",\n    \"city\": \"Barcelona\",\n    \"region\": \"Catalonia\",\n    \"country\": \"ES\",\n    \"phone_number\": \"+34612345678\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb6d52c2-159e-4e21-9905-0ea14b7c493a",
+              "name": "Forbidden. The user does not have permission to access the requested resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) The transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ACCEPT_REQUEST\",\n  \"message\": \"Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8deadaa5-56b0-4d06-949e-b9d226fe67a3",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) The transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ACCEPT_REQUEST\",\n  \"message\": \"Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20969c79-e3c5-4e3c-a6be-b32bd1a17fad",
+          "name": "Register a delivery for a transaction",
+          "request": {
+            "name": "Register a delivery for a transaction",
+            "description": {
+              "content": "Registers a delivery for a transaction with `transaction_id`. Seller needs to register the delivery when the package is registered into their carrier of choice.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId",
+                "delivery",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transactionId",
+                  "description": "(Required) The transaction ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shipment_to_buyer\": {\n    \"tracking_code\": \"<string>\",\n    \"tracking_url\": \"<string>\"\n  },\n  \"shipment_to_seller\": {\n    \"tracking_code\": \"<string>\",\n    \"tracking_url\": \"<string>\",\n    \"label_url\": \"<string>\",\n    \"label_file_type\": \"<string>\",\n    \"label_type\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6850e2d-46d6-4fac-b880-daf1d45a0034",
+              "name": "Delivery was registered successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "delivery",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) The transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipment_to_buyer\": {\n    \"tracking_code\": \"<string>\",\n    \"tracking_url\": \"<string>\"\n  },\n  \"shipment_to_seller\": {\n    \"tracking_code\": \"<string>\",\n    \"tracking_url\": \"<string>\",\n    \"label_url\": \"<string>\",\n    \"label_file_type\": \"<string>\",\n    \"label_type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "392a3229-3bae-49c6-ac60-fa4159ac591e",
+              "name": "Bad request. Request is not properly structured.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "delivery",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) The transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipment_to_buyer\": {\n    \"tracking_code\": \"<string>\",\n    \"tracking_url\": \"<string>\"\n  },\n  \"shipment_to_seller\": {\n    \"tracking_code\": \"<string>\",\n    \"tracking_url\": \"<string>\",\n    \"label_url\": \"<string>\",\n    \"label_file_type\": \"<string>\",\n    \"label_type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ACCEPT_REQUEST\",\n  \"message\": \"Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa066f9f-4d6e-4913-9bb4-40652e939eb4",
+              "name": "Conflict. There is a conflict with the current state of the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId",
+                    "delivery",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) The transaction ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shipment_to_buyer\": {\n    \"tracking_code\": \"<string>\",\n    \"tracking_url\": \"<string>\"\n  },\n  \"shipment_to_seller\": {\n    \"tracking_code\": \"<string>\",\n    \"tracking_url\": \"<string>\",\n    \"label_url\": \"<string>\",\n    \"label_file_type\": \"<string>\",\n    \"label_type\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_ACCEPT_REQUEST\",\n  \"message\": \"Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://connect.wallapop.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "00ee0003-d142-4b1a-ba46-a3df8cc44dc7",
+    "name": "Items Connect Categories Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Items Connect API streamlines the listing process by allowing sellers to programmatically post items for sale, offering an efficient alternative to creating individual item listings through the user interface.\n",
+      "type": "text/plain"
+    }
+  }
+}

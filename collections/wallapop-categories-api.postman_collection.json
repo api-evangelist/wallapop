@@ -1,0 +1,317 @@
+{
+  "item": [
+    {
+      "id": "8104de6e-57a8-4fde-b651-224acf6f32a7",
+      "name": "Categories",
+      "description": {
+        "content": "A category is a classification for product listings, with specific attributes and constraints that products within the category must adhere to.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "693fd8fe-33ec-48ca-bc7e-cb3152425877",
+          "name": "Retrieve all categories",
+          "request": {
+            "name": "Retrieve all categories",
+            "description": {
+              "content": "Retrieve Wallaop's complete category hierarchy for items. This list will help you identify the categories that best classify the items you want to sell.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The language of the category title will be returned when it has translations in different languages.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3ebe4ada-6dc2-412b-8d6e-086b92d7186e",
+              "name": "The categories were successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The language of the category title will be returned when it has translations in different languages.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"categories\": [\n    {\n      \"id\": 24200,\n      \"parent_id\": 24200,\n      \"name\": \"Tecnología y electrónica\",\n      \"assignable_to_item\": false,\n      \"subcategories\": [\n        {\n          \"id\": 10414,\n          \"parent_id\": 24200,\n          \"name\": \"TV\",\n          \"assignable_to_item\": true\n        }\n      ]\n    },\n    {\n      \"id\": 24200,\n      \"parent_id\": 24200,\n      \"name\": \"Tecnología y electrónica\",\n      \"assignable_to_item\": false,\n      \"subcategories\": [\n        {\n          \"id\": 10414,\n          \"parent_id\": 24200,\n          \"name\": \"TV\",\n          \"assignable_to_item\": true\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "585a1c95-35a5-49b4-ba02-26a1573984b5",
+          "name": "Retrieve a category's attributes",
+          "request": {
+            "name": "Retrieve a category's attributes",
+            "description": {
+              "content": "Returns the acceptable attributes for items categorized by category, including mandatory and optional attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "items",
+                "categories",
+                ":id",
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the category."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The language used to present the attribute title when it has translations in multiple languages.",
+                "key": "Accept-Language",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd461f96-5757-4a1a-9a40-3db12741b790",
+              "name": "The category's attributes were successfully retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "categories",
+                    ":id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the category."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The language used to present the attribute title when it has translations in multiple languages.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attributes\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"discrete_values\",\n      \"is_mandatory\": true,\n      \"options\": {\n        \"max_choices\": 3543,\n        \"values\": [\n          {\n            \"id\": \"string\",\n            \"title\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"mandatory_by_date\": \"2024-12-30\"\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"discrete_values\",\n      \"is_mandatory\": true,\n      \"options\": {\n        \"max_choices\": 5769,\n        \"values\": [\n          {\n            \"id\": \"string\",\n            \"title\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"title\": \"string\"\n          }\n        ]\n      },\n      \"mandatory_by_date\": \"2024-12-30\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0599c8f0-4263-43e5-8c40-1fe5141965ac",
+              "name": "Not Found. A resource with the specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "items",
+                    "categories",
+                    ":id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the category."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "The language used to present the attribute title when it has translations in multiple languages.",
+                    "key": "Accept-Language",
+                    "value": "es"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"USER_LOCATION_MISSING\",\n  \"message\": \"User without location set\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://connect.wallapop.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "redirect_uri",
+        "value": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "75e44d95-75f8-4434-8359-570016e3fc00",
+    "name": "Items Connect Categories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Items Connect API streamlines the listing process by allowing sellers to programmatically post items for sale, offering an efficient alternative to creating individual item listings through the user interface.\n",
+      "type": "text/plain"
+    }
+  }
+}

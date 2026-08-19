@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Items Connect Categories Webhooks API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth",
+      "accessTokenUrl": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/webhooks"
+          },
+          "docs": "Retrieves a list of your webhooks."
+        },
+        {
+          "info": {
+            "name": "Create a new webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://connect.wallapop.com/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Register a new webhook for the authenticated user, allowing you to receive event notifications."
+        },
+        {
+          "info": {
+            "name": "Update a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://connect.wallapop.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The webhook ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can modify the webhook definition by updating the endpoint `url` and the list of `events` to which the webhook is subscribed."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://connect.wallapop.com/webhooks/:webhookId",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The webhook ID."
+              }
+            ]
+          },
+          "docs": "Delete a webhook by providing its `id`."
+        },
+        {
+          "info": {
+            "name": "Update a webhook token",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://connect.wallapop.com/webhooks/:webhookId/token",
+            "params": [
+              {
+                "name": "webhookId",
+                "value": "",
+                "type": "path",
+                "description": "The webhook ID."
+              }
+            ]
+          },
+          "docs": "Update the webhook signing token to enhance security."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

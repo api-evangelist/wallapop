@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Items Connect Categories API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth",
+      "accessTokenUrl": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve all categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/items/categories",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": "es"
+              }
+            ]
+          },
+          "docs": "Retrieve Wallaop's complete category hierarchy for items. This list will help you identify the categories that best classify the items you want to sell."
+        },
+        {
+          "info": {
+            "name": "Retrieve a category's attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/items/categories/:id/attributes",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": "es"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "12467",
+                "type": "path",
+                "description": "The ID of the category."
+              }
+            ]
+          },
+          "docs": "Returns the acceptable attributes for items categorized by category, including mandatory and optional attributes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

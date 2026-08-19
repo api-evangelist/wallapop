@@ -1,0 +1,347 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Connect Categories Items API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth",
+      "accessTokenUrl": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List items for sale",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/items",
+            "params": [
+              {
+                "name": "since",
+                "value": "SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o",
+                "type": "query",
+                "description": "If there is a previous request, include the \"next\" pagination token from the response's metadata."
+              }
+            ]
+          },
+          "docs": "Provides a list of items you have published for sale and that are available for buyers on Wallapop."
+        },
+        {
+          "info": {
+            "name": "Create and publish an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://connect.wallapop.com/items",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": "es"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create and publish an item for sale in Wallapop."
+        },
+        {
+          "info": {
+            "name": "Retrieve item details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/items/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "xpzpvny244z3",
+                "type": "path",
+                "description": "The item ID."
+              }
+            ]
+          },
+          "docs": "Retrieves details about an item that you have for sale."
+        },
+        {
+          "info": {
+            "name": "Update an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://connect.wallapop.com/items/:itemId",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": "es"
+              }
+            ],
+            "params": [
+              {
+                "name": "itemId",
+                "value": "xpzpvny244z3",
+                "type": "path",
+                "description": "The item ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update one of your items."
+        },
+        {
+          "info": {
+            "name": "Delete an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://connect.wallapop.com/items/:itemId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "xpzpvny244z3",
+                "type": "path",
+                "description": "The item ID."
+              }
+            ]
+          },
+          "docs": "Delete a specific item by providing its ID."
+        },
+        {
+          "info": {
+            "name": "Add a image to an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://connect.wallapop.com/items/:itemId/images",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "xpzpvny244z3",
+                "type": "path",
+                "description": "The ID of the item."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an additional image to the Wallapop item page. You can also arrange the display order of these images."
+        },
+        {
+          "info": {
+            "name": "Delete an image from an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://connect.wallapop.com/items/:itemId/images/:imageId",
+            "params": [
+              {
+                "name": "itemId",
+                "value": "xpzpvny244z3",
+                "type": "path",
+                "description": "The ID of the item."
+              },
+              {
+                "name": "imageId",
+                "value": "0j2rmkq7vr6y",
+                "type": "path",
+                "description": "The ID of the image."
+              }
+            ]
+          },
+          "docs": "Delete a image from an item by providing the ID of the item and image."
+        },
+        {
+          "info": {
+            "name": "Mark an item as sold",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://connect.wallapop.com/items/:id/sold",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Only applies to items sold outside of Wallapop. Change the item's status to \"sold\" after the payment has been completed outside of Wallapop."
+        },
+        {
+          "info": {
+            "name": "Publish an inactive item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://connect.wallapop.com/items/:id/activate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "If you have deactivated a published item, you can re-publish it by using this endpoint. Requires a Wallapop Pro subscription. Refer to [Activating and deactivating products](https://ayuda.wallapop.com/hc/es-es/articles/23521878501137-Activaci%C3%B3n-y-desactivaci%C3%B3n-de-productos)."
+        },
+        {
+          "info": {
+            "name": "Deactivate a published item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://connect.wallapop.com/items/:id/inactivate",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deactivate a published item to hide it from buyers on Wallapop. Requires a Wallapop Pro subscription. Refer to [Activating and deactivating products](https://ayuda.wallapop.com/hc/es-es/articles/23521878501137-Activaci%C3%B3n-y-desactivaci%C3%B3n-de-productos) for more details."
+        },
+        {
+          "info": {
+            "name": "Reserve an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://connect.wallapop.com/items/:id/reserve",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reserve a published item."
+        },
+        {
+          "info": {
+            "name": "Cancel an item reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://connect.wallapop.com/items/:id/unreserve",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel an item reservation."
+        },
+        {
+          "info": {
+            "name": "Retrieve all categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/items/categories",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": "es"
+              }
+            ]
+          },
+          "docs": "Retrieve Wallaop's complete category hierarchy for items. This list will help you identify the categories that best classify the items you want to sell."
+        },
+        {
+          "info": {
+            "name": "Retrieve a category's attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/items/categories/:id/attributes",
+            "headers": [
+              {
+                "name": "Accept-Language",
+                "value": "es"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "12467",
+                "type": "path",
+                "description": "The ID of the category."
+              }
+            ]
+          },
+          "docs": "Returns the acceptable attributes for items categorized by category, including mandatory and optional attributes."
+        },
+        {
+          "info": {
+            "name": "Retrieve the authenticated user's listing limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/items/limits"
+          },
+          "docs": "Returns the listing limits that apply to the authenticated user, grouped per limit. Each entry lists the categories that share the limit along with the total capacity, the number of items currently counted against it, and the remaining slots."
+        },
+        {
+          "info": {
+            "name": "List inactive items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/items/inactive",
+            "params": [
+              {
+                "name": "since",
+                "value": "SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o",
+                "type": "query",
+                "description": "If there is a previous request, include the \"next\" pagination token from the response's metadata."
+              }
+            ]
+          },
+          "docs": "Returns a list of items that you have currently inactive (not available for buyers).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

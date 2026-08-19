@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Items Connect Categories Transactions API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth",
+      "accessTokenUrl": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve pending shipping requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/transactions/requests/pending"
+          },
+          "docs": "Returns a list of pending shipping requests awaiting the seller's acceptance. When a buyer purchases an item, a pending shipping request is generated. A request remains pending until the seller accepts it."
+        },
+        {
+          "info": {
+            "name": "Retrieve a shipping request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/transactions/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The shipping request ID."
+              }
+            ]
+          },
+          "docs": "Obtain the details of a specific shipping request by providing its ID."
+        },
+        {
+          "info": {
+            "name": "Accept a shipping request with home pickup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://connect.wallapop.com/transactions/requests/:requestId/accept/home-pickup",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The shipping request ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Accept a shipping request with home pickup, where the carrier collects the package directly from the seller's shipping address. The client app must generate and pass a `transaction_id`.\n"
+        },
+        {
+          "info": {
+            "name": "Accept a shipping request with post office drop off",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://connect.wallapop.com/transactions/requests/:requestId/accept/post-office",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The shipping request ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Accept a shipping request for post office drop-off, where the seller delivers the package to a designated post office. The client app must generate and pass a `transaction_id`.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve pending shipping transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/transactions/pending"
+          },
+          "docs": "Returns a list of pending shipping transactions. A shipping transaction is created when the seller accepts the corresponding shipping request. A pending transaction is one that has not been accepted, failed, rejected, cancelled, or requires payment.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve a shipping transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://connect.wallapop.com/transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The transaction ID."
+              }
+            ]
+          },
+          "docs": "Obtain the details of a specific shipping transaction by providing its ID."
+        },
+        {
+          "info": {
+            "name": "Register a delivery for a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://connect.wallapop.com/transactions/:transactionId/delivery/register",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The transaction ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a delivery for a transaction with `transaction_id`. Seller needs to register the delivery when the package is registered into their carrier of choice.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

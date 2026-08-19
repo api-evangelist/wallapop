@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Items Connect Categories Delivery API",
+    "version": "0.0.1"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth",
+      "accessTokenUrl": "https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Delivery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update a tracking status for a delivery.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://connect.wallapop.com/deliveries/:deliveryId/status",
+            "params": [
+              {
+                "name": "deliveryId",
+                "value": "",
+                "type": "path",
+                "description": "Delivery ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform an update to a delivery's tracking status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
