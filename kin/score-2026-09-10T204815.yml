@@ -1,29 +1,32 @@
-# Kin Score artifact — wallapop — 2026-08-11T211707
+# Kin Score artifact — wallapop — 2026-09-10T204815
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: wallapop
-  schema_version: 0.11.0
-  scored_at: '2026-08-11'
-  run_ts: 2026-08-11T211707
-  composite: 55.4
+  schema_version: 0.20.0
+  scored_at: '2026-09-10'
+  run_ts: 2026-09-10T204815
+  composite: 51.2
   band: developing
   facets:
-    discoverability: 92.6
-    contract_quality: 63.5
-    governance: 11.5
-    operational_transparency: 60.5
-    developer_ergonomics: 60.3
+    discoverability: 81.5
+    contract_quality: 61.8
+    governance: 4.5
+    operational_transparency: 57.9
+    developer_ergonomics: 56.5
     commercial_clarity: 44.7
+    contract_governance: 4.5
+    access_clarity: 44.7
   agent_readiness:
-    score: 56.1
+    score: 54.4
     band: agent-ready
     band_gated_from: agent-native
     dimensions:
       spec_presence: true
       agentic_access: false
-      mcp_server: true
-      auth_clarity: true
+      reversibility_documented: documented
+      mcp_server: verified
+      auth_clarity: served
       idempotency: false
       error_semantics: verified
       openapi_examples: partial
@@ -34,6 +37,10 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: served
+      protected_resource_metadata: false
+      dynamic_client_registration: true
+      agentic_commerce: false
   provenance:
     mcp: first-party
     skills: derived
