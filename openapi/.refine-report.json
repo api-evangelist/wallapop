@@ -1,24 +1,36 @@
 {
   "provider": "wallapop",
   "sources": [
-    "wallapop-categories-api-openapi.yml",
-    "wallapop-delivery-api-openapi.yml",
-    "wallapop-disputes-api-openapi.yml",
-    "wallapop-items-api-openapi.yml",
-    "wallapop-transactions-api-openapi.yml",
-    "wallapop-webhooks-api-openapi.yml"
+    "_original/wallapop-items-openapi-original.yml",
+    "_original/wallapop-transactions-openapi-original.yml",
+    "_original/wallapop-webhooks-openapi-original.yml"
   ],
   "outputs": [
     "wallapop-categories-api-openapi.yml",
+    "wallapop-items-api-openapi.yml",
     "wallapop-delivery-api-openapi.yml",
     "wallapop-disputes-api-openapi.yml",
-    "wallapop-items-api-openapi.yml",
     "wallapop-transactions-api-openapi.yml",
     "wallapop-webhooks-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "wallapop-items-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "wallapop-transactions-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "wallapop-transactions-openapi-original.yml: declared missing tag: Delivery",
+    "wallapop-transactions-openapi-original.yml: declared missing tag: Disputes",
+    "wallapop-webhooks-openapi-original.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "wallapop-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wallapop-delivery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wallapop-disputes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wallapop-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wallapop-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "wallapop-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,9 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Items Connect Categories Delivery API
-  description: 'The Items Connect API streamlines the listing process by allowing sellers to programmatically post items for sale, offering an efficient alternative to creating individual item listings through the user interface.
-
-    '
+  title: Transactions Connect Delivery API
+  description: The Transactions Connect API allows sellers to view and accept shipping requests, which initiates the shipping transaction. You can then track the transaction status until the buyer receives the item.
   version: 0.0.1
 servers:
 - url: https://connect.wallapop.com
@@ -31,7 +29,7 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateDeliveryStatusRequest'
-      summary: Update a tracking status for a delivery.
+      summary: Update a tracking status for a delivery
       description: Perform an update to a delivery's tracking status.
       operationId: updateDeliveryStatus
       responses:
@@ -51,19 +49,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    UpdateDeliveryStatusRequest:
-      type: object
-      description: Needed information to update a delivery tracking status.
-      properties:
-        status:
-          type: string
-          enum:
-          - DELIVERED_TO_CARRIER
-          - IN_TRANSIT
-          - DELIVERED
-          - FAILED
-          - CANCELLED
-          description: Status to which update the delivery to.
     Error:
       type: object
       required:
@@ -87,10 +72,23 @@ components:
           description: A detailed error message.
           type: string
           example: Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.
+    UpdateDeliveryStatusRequest:
+      type: object
+      description: Needed information to update a delivery tracking status.
+      properties:
+        status:
+          type: string
+          enum:
+          - DELIVERED_TO_CARRIER
+          - IN_TRANSIT
+          - DELIVERED
+          - FAILED
+          - CANCELLED
+          description: Status to which update the delivery to.
   securitySchemes:
     oAuthWithPKCE:
       type: oauth2
-      description: The Items Connect API uses OAuth 2.0 Authorization Code flow with a Proof Key for Code Exchange.
+      description: The Transactions Connect API uses OAuth 2.0 Authorization Code flow with a Proof Key for Code Exchange.
       flows:
         authorizationCode:
           authorizationUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth

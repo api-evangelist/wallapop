@@ -1,9 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Items Connect Categories Disputes API
-  description: 'The Items Connect API streamlines the listing process by allowing sellers to programmatically post items for sale, offering an efficient alternative to creating individual item listings through the user interface.
-
-    '
+  title: Transactions Connect Disputes API
+  description: The Transactions Connect API allows sellers to view and accept shipping requests, which initiates the shipping transaction. You can then track the transaction status until the buyer receives the item.
   version: 0.0.1
 servers:
 - url: https://connect.wallapop.com
@@ -63,6 +61,29 @@ components:
           format: uri
           description: The URL for the thumbnail version of the evidence.
           example: https://cdn.wallapop.com/evidence/photo1-thumb.jpg
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      description: Detailed information about the error encountered.
+      properties:
+        code:
+          type: string
+          enum:
+          - INVALID_ACCEPT_REQUEST
+          - USER_UNAUTHORIZED
+          - NOT_FOUND
+          - ONGOING_DELIVERY
+          - USER_IS_NOT_THE_SELLER
+          - INVALID_REGISTER_REQUEST
+          - ERROR_UPDATING_DELIVERY_STATUS
+          description: A standardized error descriptor.
+          example: INVALID_ACCEPT_REQUEST
+        message:
+          description: A detailed error message.
+          type: string
+          example: Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.
     ConnectDisputeRestResponse:
       type: object
       description: Dispute details for a transaction, including evidence and status.
@@ -99,56 +120,37 @@ components:
           items:
             $ref: '#/components/schemas/ConnectDisputeEvidence'
         escalated_reason:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: The reason why the dispute was escalated, if applicable.
           example: Broken item.
         reject_reason:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: The reason why the dispute was rejected, if applicable.
           example: Evidence insufficient.
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: The type of dispute solution, such as refund or repair.
           enum:
           - refund
           - repair
           example: refund
         check_deadline:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           description: The deadline for quality check, if applicable.
           example: '2024-06-15T23:59:59Z'
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      description: Detailed information about the error encountered.
-      properties:
-        code:
-          type: string
-          enum:
-          - INVALID_ACCEPT_REQUEST
-          - USER_UNAUTHORIZED
-          - NOT_FOUND
-          - ONGOING_DELIVERY
-          - USER_IS_NOT_THE_SELLER
-          - INVALID_REGISTER_REQUEST
-          - ERROR_UPDATING_DELIVERY_STATUS
-          description: A standardized error descriptor.
-          example: INVALID_ACCEPT_REQUEST
-        message:
-          description: A detailed error message.
-          type: string
-          example: Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.
   securitySchemes:
     oAuthWithPKCE:
       type: oauth2
-      description: The Items Connect API uses OAuth 2.0 Authorization Code flow with a Proof Key for Code Exchange.
+      description: The Transactions Connect API uses OAuth 2.0 Authorization Code flow with a Proof Key for Code Exchange.
       flows:
         authorizationCode:
           authorizationUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth

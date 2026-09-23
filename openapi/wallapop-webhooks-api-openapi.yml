@@ -1,9 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Items Connect Categories Webhooks API
-  description: 'The Items Connect API streamlines the listing process by allowing sellers to programmatically post items for sale, offering an efficient alternative to creating individual item listings through the user interface.
-
-    '
+  title: Connect Webhooks API
+  description: API for managing webhooks to subscribe to specific events related to items in Wallapop.
   version: 0.0.1
 servers:
 - url: https://connect.wallapop.com
@@ -152,6 +150,18 @@ components:
       description: 'The URL where webhook notifications will be sent. This endpoint must accept POST requests and handle incoming event notifications securely. It should validate HMAC signatures, return a `2xx` HTTP status code upon successful receipt, and process event payloads accordingly.
 
         '
+    WebhookRequest:
+      type: object
+      required:
+      - url
+      - events
+      properties:
+        url:
+          $ref: '#/components/schemas/WebhookUrl'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventType'
     WebhookIdPathParameter:
       type: string
       description: The ID of the webhook.
@@ -164,6 +174,38 @@ components:
           description: The unique identifier of the newly created webhook.
         token:
           $ref: '#/components/schemas/WebhookToken'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      description: Detailed information about the error encountered.
+      properties:
+        code:
+          type: string
+          enum:
+          - INVALID_BODY_REQUEST
+          - USER_UNAUTHORIZED
+          description: A standardized error descriptor.
+          example: INVALID_BODY_REQUEST
+        message:
+          description: A detailed error message.
+          type: string
+    FindWebhookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the webhook.
+          example: a1234b567c890
+        url:
+          $ref: '#/components/schemas/WebhookUrl'
+        token:
+          $ref: '#/components/schemas/WebhookToken'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventType'
     EventType:
       type: string
       description: 'Item events that can be subscribed to via webhooks. These events trigger notifications to the webhook when they occur.
@@ -189,39 +231,6 @@ components:
       - DISPUTE_CANCELLED_BY_WALLAPOP
       - CHAT_LEAD_CREATED
       example: SALE_COMPLETED
-    FindWebhookResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the webhook.
-          example: a1234b567c890
-        url:
-          $ref: '#/components/schemas/WebhookUrl'
-        token:
-          $ref: '#/components/schemas/WebhookToken'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventType'
-    WebhookRequest:
-      type: object
-      required:
-      - url
-      - events
-      properties:
-        url:
-          $ref: '#/components/schemas/WebhookUrl'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventType'
-    WebhookToken:
-      type: string
-      description: 'A secure HMAC token linked to the webhook, used to sign requests sent to the webhook URL. This token must be used to verify the authenticity and integrity of incoming webhook requests.
-
-        '
-      example: KVXQK63TysQsPgjUQiA8nEVN9Og5bGm5AnFGdecuOks175l894ogW3qFsfAQYIfq
     WebhookTokenUpdatedResponse:
       type: object
       properties:
@@ -230,27 +239,16 @@ components:
           description: The unique identifier of the updated webhook.
         token:
           $ref: '#/components/schemas/WebhookToken'
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      description: Detailed information about the error encountered.
-      properties:
-        code:
-          type: string
-          enum:
-          - INVALID_BODY_REQUEST
-          - USER_UNAUTHORIZED
-          description: A standardized error descriptor.
-          example: INVALID_BODY_REQUEST
-        message:
-          description: A detailed error message.
-          type: string
+    WebhookToken:
+      type: string
+      description: 'A secure HMAC token linked to the webhook, used to sign requests sent to the webhook URL. This token must be used to verify the authenticity and integrity of incoming webhook requests.
+
+        '
+      example: KVXQK63TysQsPgjUQiA8nEVN9Og5bGm5AnFGdecuOks175l894ogW3qFsfAQYIfq
   securitySchemes:
     oAuthWithPKCE:
       type: oauth2
-      description: The Items Connect API uses OAuth 2.0 Authorization Code flow with a Proof Key for Code Exchange.
+      description: The Webhooks Connect API utilizes the OAuth 2.0 Authorization Code flow with Proof Key for Code Exchange (PKCE) for secure authentication and token exchange.
       flows:
         authorizationCode:
           authorizationUrl: https://iam.wallapop.com/realms/wallapop-connect/protocol/openid-connect/auth

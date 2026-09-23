@@ -1,9 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Items Connect Categories API
-  description: 'The Items Connect API streamlines the listing process by allowing sellers to programmatically post items for sale, offering an efficient alternative to creating individual item listings through the user interface.
-
-    '
+  description: The Items Connect API streamlines the listing process by allowing sellers to programmatically post items for sale, offering an efficient alternative to creating individual item listings through the user interface.
   version: 0.0.1
 servers:
 - url: https://connect.wallapop.com
@@ -35,6 +33,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CategoriesResponse'
+      operationId: getItemsCategories
+      x-operation-id-source: derived
   /items/categories/{id}/attributes:
     get:
       summary: Retrieve a category's attributes
@@ -72,6 +72,78 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The ID of the category.
+          example: 24200
+        parent_id:
+          type: integer
+          description: 'If the category is a subcategory, the `parent_id` indicates the category it is logically nested under. It returns `null` if the category is a root-level category, meaning it is not nested under another category.
+
+            '
+          example: 24200
+        name:
+          type: string
+          description: 'The category name will be translated according to the `Accept-Language` header. If Wallapop does not support the language, it will default to English.
+
+            '
+          example: Tecnología y electrónica
+        assignable_to_item:
+          type: boolean
+          description: 'When set to `true`, a category can be assigned to an item. If set to `false`, it acts as a parent category and cannot be selected directly, containing more specific subcategories. Wallapop encourages users to choose the most specific subcategory, so top-level and intermediate categories in certain trees cannot be assigned to items.
+
+            '
+          example: false
+        subcategories:
+          type: array
+          description: A list of subcategories that are logically nested under this category. An empty list in the response indicates that the category can be assigned to an item and that there are no specific subcategories available for selection.
+          example:
+          - id: 10414
+            parent_id: 24200
+            name: TV
+            assignable_to_item: true
+          items:
+            $ref: '#/components/schemas/Category'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      description: Additional detailed information regarding the error.
+      properties:
+        code:
+          type: string
+          enum:
+          - INVALID_BODY_REQUEST
+          - MISSING_MAIN_IMAGE
+          - USER_LOCATION_MISSING
+          - INVALID_CATEGORY_LEAF
+          - INVALID_LOCATION
+          - INVALID_ITEM_ID
+          - INVALID_IMAGE
+          - INVALID_ATTRIBUTE
+          - NOT_IMPLEMENTED_CATEGORY
+          - INVALID_STATUS
+          - MAX_IMAGES_EXCEED
+          - INSUFFICIENT_IMAGES
+          - USER_UNAUTHORIZED
+          description: The error code corresponds to one of the values from the specified enumeration list.
+          example: USER_LOCATION_MISSING
+        message:
+          description: A detailed error description.
+          type: string
+          example: User without location set
+    CategoriesResponse:
+      type: object
+      properties:
+        categories:
+          type: array
+          description: Wallapop's category hierarchy used to classify items. Some categories serve as grouping mechanisms, while others can be assigned to items.
+          items:
+            $ref: '#/components/schemas/Category'
     CategoryAttributeDiscreteValuesResponse:
       description: An attribute that allows selection from a predefined set of options, similar to choosing a value from an enumerated list.
       required:
@@ -116,28 +188,37 @@ components:
                   title:
                     type: string
                     description: The title of the option in the requested language, if available.
-    RegexValidation:
+    CategoryAttributeTextValueResponse:
       type: object
-      description: The regex validation applied to the value.
+      description: An attribute that accepts text input (i.e., a string of characters).
       required:
+      - id
       - type
-      - value
+      - is_mandatory
+      - max_length
       properties:
+        id:
+          type: string
+          description: The ID of the attribute.
         type:
           type: string
-          description: 'Indicates how the regex pattern is applied. The possible values include: `not_match` or `not_contain`.
-
-            '
-          example: not_contain
-        value:
-          type: string
-          description: The regex pattern.
-          example: ^(\s+$)
-    MandatoryByDate:
-      type: string
-      format: date
-      description: The expected date after which the attribute will be mandatory.
-      example: '2024-12-30'
+          enum:
+          - text
+        is_mandatory:
+          type: boolean
+          description: Indicates whether the attribute is mandatory.
+          example: true
+        mandatory_by_date:
+          $ref: '#/components/schemas/MandatoryByDate'
+        max_length:
+          type: integer
+          description: The maximum allowable length for the provided text value.
+          example: 640
+        regex:
+          type: array
+          description: A regex pattern that the provided text value is validated against.
+          items:
+            $ref: '#/components/schemas/RegexValidation'
     CategoryAttributeNumericValueResponse:
       description: An attribute that accepts numerical values.
       required:
@@ -187,6 +268,28 @@ components:
             less_than_or_equal:
               type: integer
               description: The maximum allowed value (inclusive).
+    RegexValidation:
+      type: object
+      description: The regex validation applied to the value.
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          description: 'Indicates how the regex pattern is applied. The possible values include: `not_match` or `not_contain`.
+
+            '
+          example: not_contain
+        value:
+          type: string
+          description: The regex pattern.
+          example: ^(\s+$)
+    MandatoryByDate:
+      type: string
+      format: date
+      description: The expected date after which the attribute will be mandatory.
+      example: '2024-12-30'
     CategoryAttributesResponse:
       type: object
       properties:
@@ -229,109 +332,6 @@ components:
                 range:
                   greater_than_or_equal: 0
                   less_than_or_equal: 999
-    CategoryAttributeTextValueResponse:
-      type: object
-      description: An attribute that accepts text input (i.e., a string of characters).
-      required:
-      - id
-      - type
-      - is_mandatory
-      - max_length
-      properties:
-        id:
-          type: string
-          description: The ID of the attribute.
-        type:
-          type: string
-          enum:
-          - text
-        is_mandatory:
-          type: boolean
-          description: Indicates whether the attribute is mandatory.
-          example: true
-        mandatory_by_date:
-          $ref: '#/components/schemas/MandatoryByDate'
-        max_length:
-          type: integer
-          description: The maximum allowable length for the provided text value.
-          example: 640
-        regex:
-          type: array
-          description: A regex pattern that the provided text value is validated against.
-          items:
-            $ref: '#/components/schemas/RegexValidation'
-    Category:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The ID of the category.
-          example: 24200
-        parent_id:
-          type: integer
-          description: 'If the category is a subcategory, the `parent_id` indicates the category it is logically nested under. It returns `null` if the category is a root-level category, meaning it is not nested under another category.
-
-            '
-          example: 24200
-        name:
-          type: string
-          description: 'The category name will be translated according to the `Accept-Language` header. If Wallapop does not support the language, it will default to English.
-
-            '
-          example: Tecnología y electrónica
-        assignable_to_item:
-          type: boolean
-          description: 'When set to `true`, a category can be assigned to an item. If set to `false`, it acts as a parent category and cannot be selected directly, containing more specific subcategories. Wallapop encourages users to choose the most specific subcategory, so top-level and intermediate categories in certain trees cannot be assigned to items.
-
-            '
-          example: false
-        subcategories:
-          type: array
-          description: A list of subcategories that are logically nested under this category. An empty list in the response indicates that the category can be assigned to an item and that there are no specific subcategories available for selection.
-          example:
-          - id: 10414
-            parent_id: 24200
-            name: TV
-            assignable_to_item: true
-          items:
-            $ref: '#/components/schemas/Category'
-    CategoriesResponse:
-      type: object
-      properties:
-        categories:
-          type: array
-          description: Wallapop's category hierarchy used to classify items. Some categories serve as grouping mechanisms, while others can be assigned to items.
-          items:
-            $ref: '#/components/schemas/Category'
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      description: Additional detailed information regarding the error.
-      properties:
-        code:
-          type: string
-          enum:
-          - INVALID_BODY_REQUEST
-          - MISSING_MAIN_IMAGE
-          - USER_LOCATION_MISSING
-          - INVALID_CATEGORY_LEAF
-          - INVALID_LOCATION
-          - INVALID_ITEM_ID
-          - INVALID_IMAGE
-          - INVALID_ATTRIBUTE
-          - NOT_IMPLEMENTED_CATEGORY
-          - INVALID_STATUS
-          - MAX_IMAGES_EXCEED
-          - INSUFFICIENT_IMAGES
-          - USER_UNAUTHORIZED
-          description: The error code corresponds to one of the values from the specified enumeration list.
-          example: USER_LOCATION_MISSING
-        message:
-          description: A detailed error description.
-          type: string
-          example: User without location set
   securitySchemes:
     oAuthWithPKCE:
       type: oauth2
