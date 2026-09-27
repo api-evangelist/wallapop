@@ -527,27 +527,154 @@ paths:
           description: Unauthorized. The request lacks authentication credentials or the provided credentials are invalid.
 components:
   schemas:
-    ItemHashTags:
-      type: array
-      deprecated: true
-      description: List of hashtags.
-      example:
-      - awesome
-      - original
-      items:
-        type: string
-    CreateItemRequest:
+    Expired:
       type: object
       required:
-      - item
-      - main_image
+      - flag
       properties:
-        item:
-          $ref: '#/components/schemas/Item'
-        main_image:
-          $ref: '#/components/schemas/MainImage'
-        stock:
-          $ref: '#/components/schemas/Stock'
+        flag:
+          type: boolean
+          description: Whether the item is expired.
+    MandatoryByDate:
+      type: string
+      format: date
+      description: The expected date after which the attribute will be mandatory.
+      example: '2024-12-30'
+    Sold:
+      type: object
+      required:
+      - flag
+      properties:
+        flag:
+          type: boolean
+          description: Whether the item is sold.
+    CategoryAttributeNumericValueResponse:
+      description: An attribute that accepts numerical values.
+      required:
+      - id
+      - type
+      - is_mandatory
+      - data_type
+      properties:
+        id:
+          type: string
+          description: The ID of the attribute.
+        type:
+          type: string
+          enum:
+          - numeric
+        is_mandatory:
+          type: boolean
+          description: Indicates whether the attribute is mandatory.
+          example: true
+        mandatory_by_date:
+          $ref: '#/components/schemas/MandatoryByDate'
+        data_type:
+          type: object
+          description: Information about the numeric data type. See the [OpenAPI Specification](https://spec.openapis.org/oas/latest.html#data-types) for more details.
+          properties:
+            type:
+              type: string
+              enum:
+              - integer
+              - number
+              description: The numeric data type.
+            format:
+              type: string
+              enum:
+              - int32
+              - int64
+              - float
+              - double
+              description: The format of the numeric data type.
+        range:
+          type: object
+          description: The allowed range for the numeric value.
+          properties:
+            greater_than_or_equal:
+              type: integer
+              description: The minimum allowed value (inclusive).
+            less_than_or_equal:
+              type: integer
+              description: The maximum allowed value (inclusive).
+    ItemInUserItemsResponse:
+      type: object
+      required:
+      - id
+      - title
+      - images
+      - price
+      properties:
+        id:
+          type: string
+          description: The ID of the item.
+          example: xpzpvny244z3
+        title:
+          type: string
+          description: The item title.
+          example: Air Jordan shoes
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/Image'
+          uniqueItems: true
+          minItems: 0
+          description: 'A list of all images for an item, which may be empty for newly created items during the resizing process.
+
+            '
+        price:
+          $ref: '#/components/schemas/ItemPrice'
+        reserved:
+          $ref: '#/components/schemas/Reserved'
+          description: This object appears in the response with a value of `true` only if the item is reserved. Otherwise, it will be omitted from the item information response.
+        inactive:
+          $ref: '#/components/schemas/Inactive'
+          description: This object appears in the response with a value of `true` only if the item is inactive. Otherwise, it will be omitted from the item information response.
+        expired:
+          $ref: '#/components/schemas/Expired'
+          description: This object appears in the response with a value of `true` only if the item is expired. Otherwise, it will be omitted from the item information response.
+    CategoryAttributesResponse:
+      type: object
+      properties:
+        attributes:
+          type: array
+          items:
+            type: object
+            oneOf:
+            - $ref: '#/components/schemas/CategoryAttributeDiscreteValuesResponse'
+            - $ref: '#/components/schemas/CategoryAttributeTextValueResponse'
+            - $ref: '#/components/schemas/CategoryAttributeNumericValueResponse'
+          example:
+            example:
+              attributes:
+              - id: condition
+                type: discrete_values
+                is_mandatory: true
+                options:
+                  max_choices: 1
+                values:
+                - id: new
+                  title: Nuevo
+                - id: as_good_as_new
+                  title: Como nuevo
+                - id: good
+                  title: En buen estado
+                - id: fair
+                  title: En condiciones aceptables
+                - id: has_given_it_all
+                  title: Lo ha dado todo
+              - id: brand
+                type: text
+                is_mandatory: true
+                max_length: 75
+              - id: height_cm
+                type: numeric
+                is_mandatory: false
+                data_type:
+                  type: integer
+                range:
+                  greater_than_or_equal: 0
+                  less_than_or_equal: 999
     PaginationMetadata:
       type: object
       properties:
@@ -557,6 +684,115 @@ components:
 
             '
           example: SSMxODk2ODUyODFfRF9VIzc0ODIxMDMzX1AjMjAyMS0wNS0yNVQxNDoxMDoyM1o
+    ImageURLs:
+      type: object
+      required:
+      - small
+      - medium
+      - big
+      properties:
+        small:
+          type: string
+          format: uri
+          description: For any given image, this is the URL to the smallest version with a maximum width of 320 pixels.
+          example: http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W320
+        medium:
+          type: string
+          format: uri
+          description: For any given image, this URL links to the medium-sized version with a maximum width of 640 pixels.
+          example: http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W640
+        big:
+          type: string
+          format: uri
+          description: For any given image, this URL links to the largest-sized version with a maximum width of 800 pixels.
+          example: http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W800
+    Attributes:
+      type: object
+      additionalProperties: true
+      description: 'Attributes that only apply for some categories. You can retrieve the expected attributes/values by category using [this operation](#category/getCategoryAttributes)
+
+        '
+      example:
+        external_id: '407947058'
+        brand: Abc Design
+        size: 34
+        condition: new
+        color: yellow
+    AddItemImageRequest:
+      required:
+      - url
+      - order
+      properties:
+        url:
+          $ref: '#/components/schemas/ExternalImageURL'
+        order:
+          type: integer
+          minimum: 0
+          description: The order the image will display in the Wallapop interface.
+    UpdateItemRequest:
+      type: object
+      required:
+      - item
+      properties:
+        item:
+          $ref: '#/components/schemas/Item'
+        show_discount:
+          type: boolean
+          description: 'Whether to display the item discount. Requires a Wallapop Pro subscription. Refer to [Show discounts on your products](https://ayuda.wallapop.com/hc/es-es/articles/12632401453585-Muestra-descuentos-en-tus-productos) for more details.
+
+            '
+          example: false
+        stock:
+          $ref: '#/components/schemas/Stock'
+    RegexValidation:
+      type: object
+      description: The regex validation applied to the value.
+      required:
+      - type
+      - value
+      properties:
+        type:
+          type: string
+          description: 'Indicates how the regex pattern is applied. The possible values include: `not_match` or `not_contain`.
+
+            '
+          example: not_contain
+        value:
+          type: string
+          description: The regex pattern.
+          example: ^(\s+$)
+    MainImage:
+      required:
+      - url
+      properties:
+        url:
+          $ref: '#/components/schemas/ExternalImageURL'
+    DeliveryAttributes:
+      type: object
+      required:
+      - allowed_by_user
+      properties:
+        allowed_by_user:
+          type: boolean
+          description: Boolean indicating if the seller allows shipping for the item.
+          example: true
+        max_weight_kg:
+          type: integer
+          description: The maximum item weight in kilograms for shipping. Acceptable values are `1`, `2`, `5`, `10`, `20`, or `30`?
+          example: 10
+        free_shipping:
+          type: boolean
+          format: uuid
+          description: 'Whether to offer free shipping. Requires a Wallapop Pro subscription. For more details, refer to [Offer free shipping](https://ayuda.wallapop.com/hc/es-es/articles/9971072329361-Ofrece-env%C3%ADo-gratis).
+
+            '
+          example: false
+    ExternalImageURL:
+      type: string
+      description: 'Provide a direct link to the image without redirections. The HTTP response code should be 2xx (e.g., 200). Only JPG or JPEG files up to 10 MB are allowed.
+
+        '
+      example: http://cdn.portal.com/image129.jpg
     CategoryAttributeDiscreteValuesResponse:
       description: An attribute that allows selection from a predefined set of options, similar to choosing a value from an enumerated list.
       required:
@@ -601,18 +837,217 @@ components:
                   title:
                     type: string
                     description: The title of the option in the requested language, if available.
-    Attributes:
+    Item:
       type: object
-      additionalProperties: true
-      description: 'Attributes that only apply for some categories. You can retrieve the expected attributes/values by category using [this operation](#category/getCategoryAttributes)
+      required:
+      - category_leaf_id
+      - title
+      - description
+      - price
+      properties:
+        category_leaf_id:
+          type: string
+          description: The category used to classify the item. The category must be an assignable category.
+          example: '9931'
+        title:
+          type: string
+          description: The item's title.
+          example: Title example
+        description:
+          type: string
+          description: The item description.
+          example: A renowned line of performance and lifestyle sneakers that offer superior comfort, support, and style both on and off the court.
+        price:
+          $ref: '#/components/schemas/ItemPrice'
+        attributes:
+          $ref: '#/components/schemas/Attributes'
+        hashtags:
+          $ref: '#/components/schemas/ItemHashTags'
+        delivery:
+          $ref: '#/components/schemas/DeliveryAttributes'
+    ItemLimitResponse:
+      type: object
+      required:
+      - used
+      - category_ids
+      properties:
+        total:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: The maximum number of items allowed. `null` when the limit is infinite.
+          example: 200
+        used:
+          type: integer
+          format: int64
+          description: Number of currently published items counted against this limit.
+          example: 1
+        available:
+          type:
+          - integer
+          - 'null'
+          format: int64
+          description: Remaining slots (`total - used`). `null` when the limit is infinite.
+          example: 199
+        category_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: Category ids that share this limit.
+          example:
+          - 12461
+          - 12463
+          - 12465
+          - 12467
+    Stock:
+      type: object
+      description: The quantity of the item in the seller's inventory. This feature is only available to Wallapop Pro users. See [Add stock to your items](https://ayuda.wallapop.com/hc/es-es/articles/24311666443025-A%C3%B1ade-stock-a-tus-art%C3%ADculos).
+      required:
+      - units
+      properties:
+        units:
+          type: integer
+          description: 'The number of units you have available to sell of this item.
 
-        '
+            '
+    CategoriesResponse:
+      type: object
+      properties:
+        categories:
+          type: array
+          description: Wallapop's category hierarchy used to classify items. Some categories serve as grouping mechanisms, while others can be assigned to items.
+          items:
+            $ref: '#/components/schemas/Category'
+    CreateItemRequest:
+      type: object
+      required:
+      - item
+      - main_image
+      properties:
+        item:
+          $ref: '#/components/schemas/Item'
+        main_image:
+          $ref: '#/components/schemas/MainImage'
+        stock:
+          $ref: '#/components/schemas/Stock'
+    Metadata:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/PaginationMetadata'
+          description: Returns `null` if there are not any results left (a maximum of 40 items by page).
+    Inactive:
+      type: object
+      required:
+      - flag
+      properties:
+        flag:
+          type: boolean
+          description: Whether the item is inactive.
+    CategoryAttributeTextValueResponse:
+      type: object
+      description: An attribute that accepts text input (i.e., a string of characters).
+      required:
+      - id
+      - type
+      - is_mandatory
+      - max_length
+      properties:
+        id:
+          type: string
+          description: The ID of the attribute.
+        type:
+          type: string
+          enum:
+          - text
+        is_mandatory:
+          type: boolean
+          description: Indicates whether the attribute is mandatory.
+          example: true
+        mandatory_by_date:
+          $ref: '#/components/schemas/MandatoryByDate'
+        max_length:
+          type: integer
+          description: The maximum allowable length for the provided text value.
+          example: 640
+        regex:
+          type: array
+          description: A regex pattern that the provided text value is validated against.
+          items:
+            $ref: '#/components/schemas/RegexValidation'
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      description: Additional detailed information regarding the error.
+      properties:
+        code:
+          type: string
+          enum:
+          - INVALID_BODY_REQUEST
+          - MISSING_MAIN_IMAGE
+          - USER_LOCATION_MISSING
+          - INVALID_CATEGORY_LEAF
+          - INVALID_LOCATION
+          - INVALID_ITEM_ID
+          - INVALID_IMAGE
+          - INVALID_ATTRIBUTE
+          - NOT_IMPLEMENTED_CATEGORY
+          - INVALID_STATUS
+          - MAX_IMAGES_EXCEED
+          - INSUFFICIENT_IMAGES
+          - USER_UNAUTHORIZED
+          description: The error code corresponds to one of the values from the specified enumeration list.
+          example: USER_LOCATION_MISSING
+        message:
+          description: A detailed error description.
+          type: string
+          example: User without location set
+    Image:
+      type: object
+      required:
+      - id
+      - urls
+      properties:
+        id:
+          type: string
+          description: The image ID.
+          example: npj9rg80kmje
+        urls:
+          $ref: '#/components/schemas/ImageURLs'
+    Reserved:
+      type: object
+      required:
+      - flag
+      properties:
+        flag:
+          type: boolean
+          description: Whether the item is reserved.
+    ItemHashTags:
+      type: array
+      deprecated: true
+      description: List of hashtags.
       example:
-        external_id: '407947058'
-        brand: Abc Design
-        size: 34
-        condition: new
-        color: yellow
+      - awesome
+      - original
+      items:
+        type: string
+    ItemPrice:
+      required:
+      - cash_amount
+      - currency
+      properties:
+        cash_amount:
+          type: number
+          description: The price of the item.
+          example: 75.5
+        currency:
+          type: string
+          description: The currency code. Only supports `EUR`.
+          example: EUR
     ItemDetailResponse:
       type: object
       required:
@@ -670,133 +1105,6 @@ components:
           description: This object appears in the response with a value of `true` only if the item is sold. Otherwise, it will be omitted from the item information response.
         stock:
           $ref: '#/components/schemas/Stock'
-    MandatoryByDate:
-      type: string
-      format: date
-      description: The expected date after which the attribute will be mandatory.
-      example: '2024-12-30'
-    MainImage:
-      required:
-      - url
-      properties:
-        url:
-          $ref: '#/components/schemas/ExternalImageURL'
-    AddItemImageRequest:
-      required:
-      - url
-      - order
-      properties:
-        url:
-          $ref: '#/components/schemas/ExternalImageURL'
-        order:
-          type: integer
-          minimum: 0
-          description: The order the image will display in the Wallapop interface.
-    ImageURLs:
-      type: object
-      required:
-      - small
-      - medium
-      - big
-      properties:
-        small:
-          type: string
-          format: uri
-          description: For any given image, this is the URL to the smallest version with a maximum width of 320 pixels.
-          example: http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W320
-        medium:
-          type: string
-          format: uri
-          description: For any given image, this URL links to the medium-sized version with a maximum width of 640 pixels.
-          example: http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W640
-        big:
-          type: string
-          format: uri
-          description: For any given image, this URL links to the largest-sized version with a maximum width of 800 pixels.
-          example: http://cdn-beta.wallapop.com/images/10420/35/71/__/c10420p190124802/i421106105.jpg?pictureSize=W800
-    Expired:
-      type: object
-      required:
-      - flag
-      properties:
-        flag:
-          type: boolean
-          description: Whether the item is expired.
-    Metadata:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/PaginationMetadata'
-          description: Returns `null` if there are not any results left (a maximum of 40 items by page).
-    ItemPrice:
-      required:
-      - cash_amount
-      - currency
-      properties:
-        cash_amount:
-          type: number
-          description: The price of the item.
-          example: 75.5
-        currency:
-          type: string
-          description: The currency code. Only supports `EUR`.
-          example: EUR
-    DeliveryAttributes:
-      type: object
-      required:
-      - allowed_by_user
-      properties:
-        allowed_by_user:
-          type: boolean
-          description: Boolean indicating if the seller allows shipping for the item.
-          example: true
-        max_weight_kg:
-          type: integer
-          description: The maximum item weight in kilograms for shipping. Acceptable values are `1`, `2`, `5`, `10`, `20`, or `30`?
-          example: 10
-        free_shipping:
-          type: boolean
-          format: uuid
-          description: 'Whether to offer free shipping. Requires a Wallapop Pro subscription. For more details, refer to [Offer free shipping](https://ayuda.wallapop.com/hc/es-es/articles/9971072329361-Ofrece-env%C3%ADo-gratis).
-
-            '
-          example: false
-    Item:
-      type: object
-      required:
-      - category_leaf_id
-      - title
-      - description
-      - price
-      properties:
-        category_leaf_id:
-          type: string
-          description: The category used to classify the item. The category must be an assignable category.
-          example: '9931'
-        title:
-          type: string
-          description: The item's title.
-          example: Title example
-        description:
-          type: string
-          description: The item description.
-          example: A renowned line of performance and lifestyle sneakers that offer superior comfort, support, and style both on and off the court.
-        price:
-          $ref: '#/components/schemas/ItemPrice'
-        attributes:
-          $ref: '#/components/schemas/Attributes'
-        hashtags:
-          $ref: '#/components/schemas/ItemHashTags'
-        delivery:
-          $ref: '#/components/schemas/DeliveryAttributes'
-    Reserved:
-      type: object
-      required:
-      - flag
-      properties:
-        flag:
-          type: boolean
-          description: Whether the item is reserved.
     GetMyItemsLimitsResponse:
       type: object
       required:
@@ -806,163 +1114,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ItemLimitResponse'
-    ItemLimitResponse:
-      type: object
-      required:
-      - used
-      - category_ids
-      properties:
-        total:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: The maximum number of items allowed. `null` when the limit is infinite.
-          example: 200
-        used:
-          type: integer
-          format: int64
-          description: Number of currently published items counted against this limit.
-          example: 1
-        available:
-          type:
-          - integer
-          - 'null'
-          format: int64
-          description: Remaining slots (`total - used`). `null` when the limit is infinite.
-          example: 199
-        category_ids:
-          type: array
-          items:
-            type: integer
-            format: int64
-          description: Category ids that share this limit.
-          example:
-          - 12461
-          - 12463
-          - 12465
-          - 12467
-    ItemInUserItemsResponse:
-      type: object
-      required:
-      - id
-      - title
-      - images
-      - price
-      properties:
-        id:
-          type: string
-          description: The ID of the item.
-          example: xpzpvny244z3
-        title:
-          type: string
-          description: The item title.
-          example: Air Jordan shoes
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/Image'
-          uniqueItems: true
-          minItems: 0
-          description: 'A list of all images for an item, which may be empty for newly created items during the resizing process.
-
-            '
-        price:
-          $ref: '#/components/schemas/ItemPrice'
-        reserved:
-          $ref: '#/components/schemas/Reserved'
-          description: This object appears in the response with a value of `true` only if the item is reserved. Otherwise, it will be omitted from the item information response.
-        inactive:
-          $ref: '#/components/schemas/Inactive'
-          description: This object appears in the response with a value of `true` only if the item is inactive. Otherwise, it will be omitted from the item information response.
-        expired:
-          $ref: '#/components/schemas/Expired'
-          description: This object appears in the response with a value of `true` only if the item is expired. Otherwise, it will be omitted from the item information response.
-    Stock:
-      type: object
-      description: The quantity of the item in the seller's inventory. This feature is only available to Wallapop Pro users. See [Add stock to your items](https://ayuda.wallapop.com/hc/es-es/articles/24311666443025-A%C3%B1ade-stock-a-tus-art%C3%ADculos).
-      required:
-      - units
-      properties:
-        units:
-          type: integer
-          description: 'The number of units you have available to sell of this item.
-
-            '
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      description: Additional detailed information regarding the error.
-      properties:
-        code:
-          type: string
-          enum:
-          - INVALID_BODY_REQUEST
-          - MISSING_MAIN_IMAGE
-          - USER_LOCATION_MISSING
-          - INVALID_CATEGORY_LEAF
-          - INVALID_LOCATION
-          - INVALID_ITEM_ID
-          - INVALID_IMAGE
-          - INVALID_ATTRIBUTE
-          - NOT_IMPLEMENTED_CATEGORY
-          - INVALID_STATUS
-          - MAX_IMAGES_EXCEED
-          - INSUFFICIENT_IMAGES
-          - USER_UNAUTHORIZED
-          description: The error code corresponds to one of the values from the specified enumeration list.
-          example: USER_LOCATION_MISSING
-        message:
-          description: A detailed error description.
-          type: string
-          example: User without location set
-    ExternalImageURL:
-      type: string
-      description: 'Provide a direct link to the image without redirections. The HTTP response code should be 2xx (e.g., 200). Only JPG or JPEG files up to 10 MB are allowed.
-
-        '
-      example: http://cdn.portal.com/image129.jpg
-    Sold:
-      type: object
-      required:
-      - flag
-      properties:
-        flag:
-          type: boolean
-          description: Whether the item is sold.
-    CategoryAttributeTextValueResponse:
-      type: object
-      description: An attribute that accepts text input (i.e., a string of characters).
-      required:
-      - id
-      - type
-      - is_mandatory
-      - max_length
-      properties:
-        id:
-          type: string
-          description: The ID of the attribute.
-        type:
-          type: string
-          enum:
-          - text
-        is_mandatory:
-          type: boolean
-          description: Indicates whether the attribute is mandatory.
-          example: true
-        mandatory_by_date:
-          $ref: '#/components/schemas/MandatoryByDate'
-        max_length:
-          type: integer
-          description: The maximum allowable length for the provided text value.
-          example: 640
-        regex:
-          type: array
-          description: A regex pattern that the provided text value is validated against.
-          items:
-            $ref: '#/components/schemas/RegexValidation'
     Category:
       type: object
       properties:
@@ -998,157 +1149,6 @@ components:
             assignable_to_item: true
           items:
             $ref: '#/components/schemas/Category'
-    Image:
-      type: object
-      required:
-      - id
-      - urls
-      properties:
-        id:
-          type: string
-          description: The image ID.
-          example: npj9rg80kmje
-        urls:
-          $ref: '#/components/schemas/ImageURLs'
-    RegexValidation:
-      type: object
-      description: The regex validation applied to the value.
-      required:
-      - type
-      - value
-      properties:
-        type:
-          type: string
-          description: 'Indicates how the regex pattern is applied. The possible values include: `not_match` or `not_contain`.
-
-            '
-          example: not_contain
-        value:
-          type: string
-          description: The regex pattern.
-          example: ^(\s+$)
-    CategoryAttributesResponse:
-      type: object
-      properties:
-        attributes:
-          type: array
-          items:
-            type: object
-            oneOf:
-            - $ref: '#/components/schemas/CategoryAttributeDiscreteValuesResponse'
-            - $ref: '#/components/schemas/CategoryAttributeTextValueResponse'
-            - $ref: '#/components/schemas/CategoryAttributeNumericValueResponse'
-          example:
-            example:
-              attributes:
-              - id: condition
-                type: discrete_values
-                is_mandatory: true
-                options:
-                  max_choices: 1
-                values:
-                - id: new
-                  title: Nuevo
-                - id: as_good_as_new
-                  title: Como nuevo
-                - id: good
-                  title: En buen estado
-                - id: fair
-                  title: En condiciones aceptables
-                - id: has_given_it_all
-                  title: Lo ha dado todo
-              - id: brand
-                type: text
-                is_mandatory: true
-                max_length: 75
-              - id: height_cm
-                type: numeric
-                is_mandatory: false
-                data_type:
-                  type: integer
-                range:
-                  greater_than_or_equal: 0
-                  less_than_or_equal: 999
-    Inactive:
-      type: object
-      required:
-      - flag
-      properties:
-        flag:
-          type: boolean
-          description: Whether the item is inactive.
-    UpdateItemRequest:
-      type: object
-      required:
-      - item
-      properties:
-        item:
-          $ref: '#/components/schemas/Item'
-        show_discount:
-          type: boolean
-          description: 'Whether to display the item discount. Requires a Wallapop Pro subscription. Refer to [Show discounts on your products](https://ayuda.wallapop.com/hc/es-es/articles/12632401453585-Muestra-descuentos-en-tus-productos) for more details.
-
-            '
-          example: false
-        stock:
-          $ref: '#/components/schemas/Stock'
-    CategoriesResponse:
-      type: object
-      properties:
-        categories:
-          type: array
-          description: Wallapop's category hierarchy used to classify items. Some categories serve as grouping mechanisms, while others can be assigned to items.
-          items:
-            $ref: '#/components/schemas/Category'
-    CategoryAttributeNumericValueResponse:
-      description: An attribute that accepts numerical values.
-      required:
-      - id
-      - type
-      - is_mandatory
-      - data_type
-      properties:
-        id:
-          type: string
-          description: The ID of the attribute.
-        type:
-          type: string
-          enum:
-          - numeric
-        is_mandatory:
-          type: boolean
-          description: Indicates whether the attribute is mandatory.
-          example: true
-        mandatory_by_date:
-          $ref: '#/components/schemas/MandatoryByDate'
-        data_type:
-          type: object
-          description: Information about the numeric data type. See the [OpenAPI Specification](https://spec.openapis.org/oas/latest.html#data-types) for more details.
-          properties:
-            type:
-              type: string
-              enum:
-              - integer
-              - number
-              description: The numeric data type.
-            format:
-              type: string
-              enum:
-              - int32
-              - int64
-              - float
-              - double
-              description: The format of the numeric data type.
-        range:
-          type: object
-          description: The allowed range for the numeric value.
-          properties:
-            greater_than_or_equal:
-              type: integer
-              description: The minimum allowed value (inclusive).
-            less_than_or_equal:
-              type: integer
-              description: The maximum allowed value (inclusive).
     UserItemsResponse:
       type: object
       required:

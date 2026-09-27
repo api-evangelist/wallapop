@@ -145,35 +145,6 @@ paths:
           description: Not found. A resource with the specified ID does not exist.
 components:
   schemas:
-    WebhookUrl:
-      type: string
-      description: 'The URL where webhook notifications will be sent. This endpoint must accept POST requests and handle incoming event notifications securely. It should validate HMAC signatures, return a `2xx` HTTP status code upon successful receipt, and process event payloads accordingly.
-
-        '
-    WebhookRequest:
-      type: object
-      required:
-      - url
-      - events
-      properties:
-        url:
-          $ref: '#/components/schemas/WebhookUrl'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventType'
-    WebhookIdPathParameter:
-      type: string
-      description: The ID of the webhook.
-      example: 5d5ae7a4-2d0d-4be1-a5da-b49e3291e5cd
-    CreateWebhookResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the newly created webhook.
-        token:
-          $ref: '#/components/schemas/WebhookToken'
     Error:
       type: object
       required:
@@ -191,21 +162,6 @@ components:
         message:
           description: A detailed error message.
           type: string
-    FindWebhookResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the webhook.
-          example: a1234b567c890
-        url:
-          $ref: '#/components/schemas/WebhookUrl'
-        token:
-          $ref: '#/components/schemas/WebhookToken'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventType'
     EventType:
       type: string
       description: 'Item events that can be subscribed to via webhooks. These events trigger notifications to the webhook when they occur.
@@ -231,6 +187,41 @@ components:
       - DISPUTE_CANCELLED_BY_WALLAPOP
       - CHAT_LEAD_CREATED
       example: SALE_COMPLETED
+    FindWebhookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the webhook.
+          example: a1234b567c890
+        url:
+          $ref: '#/components/schemas/WebhookUrl'
+        token:
+          $ref: '#/components/schemas/WebhookToken'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventType'
+    WebhookRequest:
+      type: object
+      required:
+      - url
+      - events
+      properties:
+        url:
+          $ref: '#/components/schemas/WebhookUrl'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventType'
+    CreateWebhookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the newly created webhook.
+        token:
+          $ref: '#/components/schemas/WebhookToken'
     WebhookTokenUpdatedResponse:
       type: object
       properties:
@@ -245,6 +236,15 @@ components:
 
         '
       example: KVXQK63TysQsPgjUQiA8nEVN9Og5bGm5AnFGdecuOks175l894ogW3qFsfAQYIfq
+    WebhookUrl:
+      type: string
+      description: 'The URL where webhook notifications will be sent. This endpoint must accept POST requests and handle incoming event notifications securely. It should validate HMAC signatures, return a `2xx` HTTP status code upon successful receipt, and process event payloads accordingly.
+
+        '
+    WebhookIdPathParameter:
+      type: string
+      description: The ID of the webhook.
+      example: 5d5ae7a4-2d0d-4be1-a5da-b49e3291e5cd
   securitySchemes:
     oAuthWithPKCE:
       type: oauth2

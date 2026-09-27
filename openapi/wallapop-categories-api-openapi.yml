@@ -72,41 +72,37 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Category:
+    CategoryAttributeTextValueResponse:
       type: object
+      description: An attribute that accepts text input (i.e., a string of characters).
+      required:
+      - id
+      - type
+      - is_mandatory
+      - max_length
       properties:
         id:
-          type: integer
-          description: The ID of the category.
-          example: 24200
-        parent_id:
-          type: integer
-          description: 'If the category is a subcategory, the `parent_id` indicates the category it is logically nested under. It returns `null` if the category is a root-level category, meaning it is not nested under another category.
-
-            '
-          example: 24200
-        name:
           type: string
-          description: 'The category name will be translated according to the `Accept-Language` header. If Wallapop does not support the language, it will default to English.
-
-            '
-          example: Tecnología y electrónica
-        assignable_to_item:
+          description: The ID of the attribute.
+        type:
+          type: string
+          enum:
+          - text
+        is_mandatory:
           type: boolean
-          description: 'When set to `true`, a category can be assigned to an item. If set to `false`, it acts as a parent category and cannot be selected directly, containing more specific subcategories. Wallapop encourages users to choose the most specific subcategory, so top-level and intermediate categories in certain trees cannot be assigned to items.
-
-            '
-          example: false
-        subcategories:
+          description: Indicates whether the attribute is mandatory.
+          example: true
+        mandatory_by_date:
+          $ref: '#/components/schemas/MandatoryByDate'
+        max_length:
+          type: integer
+          description: The maximum allowable length for the provided text value.
+          example: 640
+        regex:
           type: array
-          description: A list of subcategories that are logically nested under this category. An empty list in the response indicates that the category can be assigned to an item and that there are no specific subcategories available for selection.
-          example:
-          - id: 10414
-            parent_id: 24200
-            name: TV
-            assignable_to_item: true
+          description: A regex pattern that the provided text value is validated against.
           items:
-            $ref: '#/components/schemas/Category'
+            $ref: '#/components/schemas/RegexValidation'
     Error:
       type: object
       required:
@@ -144,81 +140,23 @@ components:
           description: Wallapop's category hierarchy used to classify items. Some categories serve as grouping mechanisms, while others can be assigned to items.
           items:
             $ref: '#/components/schemas/Category'
-    CategoryAttributeDiscreteValuesResponse:
-      description: An attribute that allows selection from a predefined set of options, similar to choosing a value from an enumerated list.
-      required:
-      - id
-      - type
-      - is_mandatory
-      - options
-      properties:
-        id:
-          type: string
-          description: The ID of the attribute.
-        type:
-          type: string
-          enum:
-          - discrete_values
-        is_mandatory:
-          type: boolean
-          description: Indicates whether the attribute is mandatory.
-          example: true
-        mandatory_by_date:
-          $ref: '#/components/schemas/MandatoryByDate'
-        options:
-          type: object
-          description: The options for attributes of type 'discrete_values'.
-          required:
-          - max_choices
-          - values
-          properties:
-            max_choices:
-              type: integer
-              description: The maximum number of selectable options.
-            values:
-              type: array
-              items:
-                type: object
-                required:
-                - id
-                properties:
-                  id:
-                    type: string
-                    description: The ID of the attribute value, expected when adding or updating a specific item attribute.
-                  title:
-                    type: string
-                    description: The title of the option in the requested language, if available.
-    CategoryAttributeTextValueResponse:
+    RegexValidation:
       type: object
-      description: An attribute that accepts text input (i.e., a string of characters).
+      description: The regex validation applied to the value.
       required:
-      - id
       - type
-      - is_mandatory
-      - max_length
+      - value
       properties:
-        id:
-          type: string
-          description: The ID of the attribute.
         type:
           type: string
-          enum:
-          - text
-        is_mandatory:
-          type: boolean
-          description: Indicates whether the attribute is mandatory.
-          example: true
-        mandatory_by_date:
-          $ref: '#/components/schemas/MandatoryByDate'
-        max_length:
-          type: integer
-          description: The maximum allowable length for the provided text value.
-          example: 640
-        regex:
-          type: array
-          description: A regex pattern that the provided text value is validated against.
-          items:
-            $ref: '#/components/schemas/RegexValidation'
+          description: 'Indicates how the regex pattern is applied. The possible values include: `not_match` or `not_contain`.
+
+            '
+          example: not_contain
+        value:
+          type: string
+          description: The regex pattern.
+          example: ^(\s+$)
     CategoryAttributeNumericValueResponse:
       description: An attribute that accepts numerical values.
       required:
@@ -268,23 +206,41 @@ components:
             less_than_or_equal:
               type: integer
               description: The maximum allowed value (inclusive).
-    RegexValidation:
+    Category:
       type: object
-      description: The regex validation applied to the value.
-      required:
-      - type
-      - value
       properties:
-        type:
-          type: string
-          description: 'Indicates how the regex pattern is applied. The possible values include: `not_match` or `not_contain`.
+        id:
+          type: integer
+          description: The ID of the category.
+          example: 24200
+        parent_id:
+          type: integer
+          description: 'If the category is a subcategory, the `parent_id` indicates the category it is logically nested under. It returns `null` if the category is a root-level category, meaning it is not nested under another category.
 
             '
-          example: not_contain
-        value:
+          example: 24200
+        name:
           type: string
-          description: The regex pattern.
-          example: ^(\s+$)
+          description: 'The category name will be translated according to the `Accept-Language` header. If Wallapop does not support the language, it will default to English.
+
+            '
+          example: Tecnología y electrónica
+        assignable_to_item:
+          type: boolean
+          description: 'When set to `true`, a category can be assigned to an item. If set to `false`, it acts as a parent category and cannot be selected directly, containing more specific subcategories. Wallapop encourages users to choose the most specific subcategory, so top-level and intermediate categories in certain trees cannot be assigned to items.
+
+            '
+          example: false
+        subcategories:
+          type: array
+          description: A list of subcategories that are logically nested under this category. An empty list in the response indicates that the category can be assigned to an item and that there are no specific subcategories available for selection.
+          example:
+          - id: 10414
+            parent_id: 24200
+            name: TV
+            assignable_to_item: true
+          items:
+            $ref: '#/components/schemas/Category'
     MandatoryByDate:
       type: string
       format: date
@@ -332,6 +288,50 @@ components:
                 range:
                   greater_than_or_equal: 0
                   less_than_or_equal: 999
+    CategoryAttributeDiscreteValuesResponse:
+      description: An attribute that allows selection from a predefined set of options, similar to choosing a value from an enumerated list.
+      required:
+      - id
+      - type
+      - is_mandatory
+      - options
+      properties:
+        id:
+          type: string
+          description: The ID of the attribute.
+        type:
+          type: string
+          enum:
+          - discrete_values
+        is_mandatory:
+          type: boolean
+          description: Indicates whether the attribute is mandatory.
+          example: true
+        mandatory_by_date:
+          $ref: '#/components/schemas/MandatoryByDate'
+        options:
+          type: object
+          description: The options for attributes of type 'discrete_values'.
+          required:
+          - max_choices
+          - values
+          properties:
+            max_choices:
+              type: integer
+              description: The maximum number of selectable options.
+            values:
+              type: array
+              items:
+                type: object
+                required:
+                - id
+                properties:
+                  id:
+                    type: string
+                    description: The ID of the attribute value, expected when adding or updating a specific item attribute.
+                  title:
+                    type: string
+                    description: The title of the option in the requested language, if available.
   securitySchemes:
     oAuthWithPKCE:
       type: oauth2
