@@ -49,19 +49,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    UpdateDeliveryStatusRequest:
-      type: object
-      description: Needed information to update a delivery tracking status.
-      properties:
-        status:
-          type: string
-          enum:
-          - DELIVERED_TO_CARRIER
-          - IN_TRANSIT
-          - DELIVERED
-          - FAILED
-          - CANCELLED
-          description: Status to which update the delivery to.
     Error:
       type: object
       required:
@@ -85,6 +72,19 @@ components:
           description: A detailed error message.
           type: string
           example: Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.
+    UpdateDeliveryStatusRequest:
+      type: object
+      description: Needed information to update a delivery tracking status.
+      properties:
+        status:
+          type: string
+          enum:
+          - DELIVERED_TO_CARRIER
+          - IN_TRANSIT
+          - DELIVERED
+          - FAILED
+          - CANCELLED
+          description: Status to which update the delivery to.
   securitySchemes:
     oAuthWithPKCE:
       type: oauth2

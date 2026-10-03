@@ -207,6 +207,59 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    RegisterDeliveryRequest:
+      type: object
+      description: Needed information to register the delivery.
+      properties:
+        shipment_to_buyer:
+          type:
+          - object
+          - 'null'
+          description: Contains all necessary information for a delivery from seller to buyer.
+          properties:
+            tracking_code:
+              type: string
+              description: Tracking code from the carrier.
+            tracking_url:
+              type: string
+              description: URL from the carrier to track the package's status.
+        shipment_to_seller:
+          type:
+          - object
+          - 'null'
+          description: Contains all necessary information for a delivery from buyer to seller.
+          properties:
+            tracking_code:
+              type: string
+              description: Tracking code from the carrier.
+            tracking_url:
+              type: string
+              description: URL from the carrier to track the package's status.
+            label_url:
+              type: string
+              description: URL of the shipping label.
+            label_file_type:
+              type: string
+              enum:
+              - PNG
+              - PDF
+              - JPG
+              - GIF
+              description: File type of the label
+            label_type:
+              type: string
+              enum:
+              - BARCODE
+              - PRINTABLE
+              - PAPERLESS
+              description: Type of the provided label.
+    PendingTransactionsResponse:
+      type: object
+      properties:
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PendingTransactionResponse'
     PendingRequestCarrierDropOffOption:
       type: object
       properties:
@@ -230,6 +283,56 @@ components:
               $ref: '#/components/schemas/Amount'
             currency:
               $ref: '#/components/schemas/Currency'
+    BuyerCost:
+      type: object
+      description: 'A detailed breakdown of the buyer''s cost
+
+        '
+      properties:
+        item_price:
+          description: The price at which the item was sold.
+          properties:
+            amount:
+              $ref: '#/components/schemas/Amount'
+            currency:
+              $ref: '#/components/schemas/Currency'
+        delivery_cost:
+          description: The cost of delivering the item to the buyer.
+          properties:
+            amount:
+              $ref: '#/components/schemas/Amount'
+            currency:
+              $ref: '#/components/schemas/Currency'
+        fees_cost:
+          description: Fees deducted by the platform for the transaction.
+          properties:
+            amount:
+              $ref: '#/components/schemas/Amount'
+            currency:
+              $ref: '#/components/schemas/Currency'
+        total:
+          description: The final amount the buyer will pay.
+          properties:
+            amount:
+              $ref: '#/components/schemas/Amount'
+            currency:
+              $ref: '#/components/schemas/Currency'
+    PendingRequestsResponse:
+      type: object
+      properties:
+        requests:
+          type: array
+          items:
+            $ref: '#/components/schemas/PendingRequestResponse'
+    PendingRequestCarrierDropOffOptions:
+      type: object
+      required:
+      - options
+      properties:
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/PendingRequestCarrierDropOffOption'
     PendingRequestResponse:
       description: A pending shipping request that has not be accepted by the seller yet.
       type: object
@@ -264,29 +367,40 @@ components:
           example: v9owzy2j5g7x
         carrier_drop_off_options:
           $ref: '#/components/schemas/PendingRequestCarrierDropOffOptions'
-    Error:
+    SellerRevenue:
       type: object
-      required:
-      - code
-      - message
-      description: Detailed information about the error encountered.
+      description: 'A detailed breakdown of the seller''s revenue.
+
+        '
       properties:
-        code:
-          type: string
-          enum:
-          - INVALID_ACCEPT_REQUEST
-          - USER_UNAUTHORIZED
-          - NOT_FOUND
-          - ONGOING_DELIVERY
-          - USER_IS_NOT_THE_SELLER
-          - INVALID_REGISTER_REQUEST
-          - ERROR_UPDATING_DELIVERY_STATUS
-          description: A standardized error descriptor.
-          example: INVALID_ACCEPT_REQUEST
-        message:
-          description: A detailed error message.
-          type: string
-          example: Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.
+        item_price:
+          description: The price at which the item was sold.
+          properties:
+            amount:
+              $ref: '#/components/schemas/Amount'
+            currency:
+              $ref: '#/components/schemas/Currency'
+        delivery_cost:
+          description: The cost of delivering the item to the buyer.
+          properties:
+            amount:
+              $ref: '#/components/schemas/Amount'
+            currency:
+              $ref: '#/components/schemas/Currency'
+        fees_cost:
+          description: Fees deducted by the platform for the transaction.
+          properties:
+            amount:
+              $ref: '#/components/schemas/Amount'
+            currency:
+              $ref: '#/components/schemas/Currency'
+        total:
+          description: The final amount the seller will receive.
+          properties:
+            amount:
+              $ref: '#/components/schemas/Amount'
+            currency:
+              $ref: '#/components/schemas/Currency'
     TransactionResponse:
       description: A shipping transaction, which may be in any state (pending, delivered, cancelled, etc.).
       type: object
@@ -376,39 +490,15 @@ components:
           example: ffbb8752-bde8-40e4-ba59-bf6354f7edff
         buyer_information:
           $ref: '#/components/schemas/BuyerInformation'
-    FindRequestResponse:
-      description: A shipping request is generated when a buyer purchases an item, including the cost of the item, service fees, and delivery charges.
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier for the shipping request.
-          example: bf44bd9c-b9fc-4e63-ba48-78539979738a
-        item_ids:
-          type: array
-          description: The list contains items selected by the buyer, with each item identified by its unique ID.
-          items:
-            type: string
-          example:
-          - 3e9wzv7zlmdr
-          - abc123xyz
-          - another-id
-        seller_revenue:
-          $ref: '#/components/schemas/SellerRevenue'
-        buyer_cost:
-          $ref: '#/components/schemas/BuyerCost'
-        buyer_information:
-          $ref: '#/components/schemas/BuyerInformation'
-        buyer_user_id:
-          type: string
-          description: A unique identifier generated by Wallapop to identify the buyer for this specific shipping request.
-          example: v9owzy2j5g7x
-        carrier_drop_off_options:
-          $ref: '#/components/schemas/PendingRequestCarrierDropOffOptions'
-        status:
-          type: string
-          description: The transaction status can be accepted, pending, failed, rejected, cancelled, cancelled by the buyer, expired, or requires payment.
-          example: pending
+    Amount:
+      type: number
+      description: The amount in the specified currency.
+      format: float
+      example: 300.89
+    Currency:
+      type: string
+      description: The currency code associated with the amount. The only supported currency is `EUR`.
+      example: EUR
     PendingTransactionResponse:
       description: A pending shipping transaction that has neither reached a final state nor been canceled or expired.
       type: object
@@ -501,138 +591,72 @@ components:
           example: ffbb8752-bde8-40e4-ba59-bf6354f7edff
         buyer_information:
           $ref: '#/components/schemas/BuyerInformation'
-    SellerRevenue:
-      type: object
-      description: 'A detailed breakdown of the seller''s revenue.
-
-        '
-      properties:
-        item_price:
-          description: The price at which the item was sold.
-          properties:
-            amount:
-              $ref: '#/components/schemas/Amount'
-            currency:
-              $ref: '#/components/schemas/Currency'
-        delivery_cost:
-          description: The cost of delivering the item to the buyer.
-          properties:
-            amount:
-              $ref: '#/components/schemas/Amount'
-            currency:
-              $ref: '#/components/schemas/Currency'
-        fees_cost:
-          description: Fees deducted by the platform for the transaction.
-          properties:
-            amount:
-              $ref: '#/components/schemas/Amount'
-            currency:
-              $ref: '#/components/schemas/Currency'
-        total:
-          description: The final amount the seller will receive.
-          properties:
-            amount:
-              $ref: '#/components/schemas/Amount'
-            currency:
-              $ref: '#/components/schemas/Currency'
-    Currency:
-      type: string
-      description: The currency code associated with the amount. The only supported currency is `EUR`.
-      example: EUR
-    Amount:
-      type: number
-      description: The amount in the specified currency.
-      format: float
-      example: 300.89
-    BuyerCost:
-      type: object
-      description: 'A detailed breakdown of the buyer''s cost
-
-        '
-      properties:
-        item_price:
-          description: The price at which the item was sold.
-          properties:
-            amount:
-              $ref: '#/components/schemas/Amount'
-            currency:
-              $ref: '#/components/schemas/Currency'
-        delivery_cost:
-          description: The cost of delivering the item to the buyer.
-          properties:
-            amount:
-              $ref: '#/components/schemas/Amount'
-            currency:
-              $ref: '#/components/schemas/Currency'
-        fees_cost:
-          description: Fees deducted by the platform for the transaction.
-          properties:
-            amount:
-              $ref: '#/components/schemas/Amount'
-            currency:
-              $ref: '#/components/schemas/Currency'
-        total:
-          description: The final amount the buyer will pay.
-          properties:
-            amount:
-              $ref: '#/components/schemas/Amount'
-            currency:
-              $ref: '#/components/schemas/Currency'
-    PendingRequestCarrierDropOffOptions:
+    SellerAcceptRequestRestRequest:
       type: object
       required:
-      - options
+      - transaction_id
       properties:
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/PendingRequestCarrierDropOffOption'
-    RegisterDeliveryRequest:
+        transaction_id:
+          type: string
+          example: a1b2c3d4-e5f6-1234-5678-90abcdef1234
+          format: uuid
+          description: The unique identifier of the new transaction generated by the API client.
+    Error:
       type: object
-      description: Needed information to register the delivery.
+      required:
+      - code
+      - message
+      description: Detailed information about the error encountered.
       properties:
-        shipment_to_buyer:
-          type:
-          - object
-          - 'null'
-          description: Contains all necessary information for a delivery from seller to buyer.
-          properties:
-            tracking_code:
-              type: string
-              description: Tracking code from the carrier.
-            tracking_url:
-              type: string
-              description: URL from the carrier to track the package's status.
-        shipment_to_seller:
-          type:
-          - object
-          - 'null'
-          description: Contains all necessary information for a delivery from buyer to seller.
-          properties:
-            tracking_code:
-              type: string
-              description: Tracking code from the carrier.
-            tracking_url:
-              type: string
-              description: URL from the carrier to track the package's status.
-            label_url:
-              type: string
-              description: URL of the shipping label.
-            label_file_type:
-              type: string
-              enum:
-              - PNG
-              - PDF
-              - JPG
-              - GIF
-              description: File type of the label
-            label_type:
-              type: string
-              enum:
-              - BARCODE
-              - PRINTABLE
-              - PAPERLESS
-              description: Type of the provided label.
+        code:
+          type: string
+          enum:
+          - INVALID_ACCEPT_REQUEST
+          - USER_UNAUTHORIZED
+          - NOT_FOUND
+          - ONGOING_DELIVERY
+          - USER_IS_NOT_THE_SELLER
+          - INVALID_REGISTER_REQUEST
+          - ERROR_UPDATING_DELIVERY_STATUS
+          description: A standardized error descriptor.
+          example: INVALID_ACCEPT_REQUEST
+        message:
+          description: A detailed error message.
+          type: string
+          example: Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.
+    FindRequestResponse:
+      description: A shipping request is generated when a buyer purchases an item, including the cost of the item, service fees, and delivery charges.
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the shipping request.
+          example: bf44bd9c-b9fc-4e63-ba48-78539979738a
+        item_ids:
+          type: array
+          description: The list contains items selected by the buyer, with each item identified by its unique ID.
+          items:
+            type: string
+          example:
+          - 3e9wzv7zlmdr
+          - abc123xyz
+          - another-id
+        seller_revenue:
+          $ref: '#/components/schemas/SellerRevenue'
+        buyer_cost:
+          $ref: '#/components/schemas/BuyerCost'
+        buyer_information:
+          $ref: '#/components/schemas/BuyerInformation'
+        buyer_user_id:
+          type: string
+          description: A unique identifier generated by Wallapop to identify the buyer for this specific shipping request.
+          example: v9owzy2j5g7x
+        carrier_drop_off_options:
+          $ref: '#/components/schemas/PendingRequestCarrierDropOffOptions'
+        status:
+          type: string
+          description: The transaction status can be accepted, pending, failed, rejected, cancelled, cancelled by the buyer, expired, or requires payment.
+          example: pending
     BuyerInformation:
       type:
       - object
@@ -667,30 +691,6 @@ components:
           type: string
           description: The phone number of the buyer.
           example: '+34612345678'
-    PendingTransactionsResponse:
-      type: object
-      properties:
-        transactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/PendingTransactionResponse'
-    PendingRequestsResponse:
-      type: object
-      properties:
-        requests:
-          type: array
-          items:
-            $ref: '#/components/schemas/PendingRequestResponse'
-    SellerAcceptRequestRestRequest:
-      type: object
-      required:
-      - transaction_id
-      properties:
-        transaction_id:
-          type: string
-          example: a1b2c3d4-e5f6-1234-5678-90abcdef1234
-          format: uuid
-          description: The unique identifier of the new transaction generated by the API client.
   securitySchemes:
     oAuthWithPKCE:
       type: oauth2
