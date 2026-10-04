@@ -47,20 +47,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    ConnectDisputeEvidence:
-      type: object
-      description: Evidence attached to a dispute, such as a photo or video, including a thumbnail.
-      properties:
-        url:
-          type: string
-          format: uri
-          description: The URL where the evidence file can be accessed.
-          example: https://cdn.wallapop.com/evidence/photo1.jpg
-        thumbnail_url:
-          type: string
-          format: uri
-          description: The URL for the thumbnail version of the evidence.
-          example: https://cdn.wallapop.com/evidence/photo1-thumb.jpg
     Error:
       type: object
       required:
@@ -84,6 +70,20 @@ components:
           description: A detailed error message.
           type: string
           example: Request `1a24c9e4-32c9-44ea-8f63-9e4f2ba54725` status is not `PENDING`. It is `ACCEPTED`.
+    ConnectDisputeEvidence:
+      type: object
+      description: Evidence attached to a dispute, such as a photo or video, including a thumbnail.
+      properties:
+        url:
+          type: string
+          format: uri
+          description: The URL where the evidence file can be accessed.
+          example: https://cdn.wallapop.com/evidence/photo1.jpg
+        thumbnail_url:
+          type: string
+          format: uri
+          description: The URL for the thumbnail version of the evidence.
+          example: https://cdn.wallapop.com/evidence/photo1-thumb.jpg
     ConnectDisputeRestResponse:
       type: object
       description: Dispute details for a transaction, including evidence and status.
