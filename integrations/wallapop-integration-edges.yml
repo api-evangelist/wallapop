@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/wallapop/integrations
+- https://n8n.io/integrations/wallapop/
+- https://composio.dev/toolkits/wallapop
+- https://monid.ai/tools/wallapop
+checked:
+- https://composio.dev/toolkits/wallapop
+- https://monid.ai/tools/wallapop
+- https://n8n.io/integrations/wallapop/
+- https://zapier.com/apps/wallapop/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
