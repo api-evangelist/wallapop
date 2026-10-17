@@ -145,6 +145,39 @@ paths:
           description: Not found. A resource with the specified ID does not exist.
 components:
   schemas:
+    WebhookIdPathParameter:
+      type: string
+      description: The ID of the webhook.
+      example: 5d5ae7a4-2d0d-4be1-a5da-b49e3291e5cd
+    Error:
+      type: object
+      required:
+      - code
+      - message
+      description: Detailed information about the error encountered.
+      properties:
+        code:
+          type: string
+          enum:
+          - INVALID_BODY_REQUEST
+          - USER_UNAUTHORIZED
+          description: A standardized error descriptor.
+          example: INVALID_BODY_REQUEST
+        message:
+          description: A detailed error message.
+          type: string
+    WebhookRequest:
+      type: object
+      required:
+      - url
+      - events
+      properties:
+        url:
+          $ref: '#/components/schemas/WebhookUrl'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventType'
     WebhookToken:
       type: string
       description: 'A secure HMAC token linked to the webhook, used to sign requests sent to the webhook URL. This token must be used to verify the authenticity and integrity of incoming webhook requests.
@@ -176,6 +209,27 @@ components:
       - DISPUTE_CANCELLED_BY_WALLAPOP
       - CHAT_LEAD_CREATED
       example: SALE_COMPLETED
+    CreateWebhookResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the newly created webhook.
+        token:
+          $ref: '#/components/schemas/WebhookToken'
+    WebhookUrl:
+      type: string
+      description: 'The URL where webhook notifications will be sent. This endpoint must accept POST requests and handle incoming event notifications securely. It should validate HMAC signatures, return a `2xx` HTTP status code upon successful receipt, and process event payloads accordingly.
+
+        '
+    WebhookTokenUpdatedResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the updated webhook.
+        token:
+          $ref: '#/components/schemas/WebhookToken'
     FindWebhookResponse:
       type: object
       properties:
@@ -191,60 +245,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventType'
-    WebhookRequest:
-      type: object
-      required:
-      - url
-      - events
-      properties:
-        url:
-          $ref: '#/components/schemas/WebhookUrl'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventType'
-    WebhookTokenUpdatedResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the updated webhook.
-        token:
-          $ref: '#/components/schemas/WebhookToken'
-    WebhookUrl:
-      type: string
-      description: 'The URL where webhook notifications will be sent. This endpoint must accept POST requests and handle incoming event notifications securely. It should validate HMAC signatures, return a `2xx` HTTP status code upon successful receipt, and process event payloads accordingly.
-
-        '
-    WebhookIdPathParameter:
-      type: string
-      description: The ID of the webhook.
-      example: 5d5ae7a4-2d0d-4be1-a5da-b49e3291e5cd
-    Error:
-      type: object
-      required:
-      - code
-      - message
-      description: Detailed information about the error encountered.
-      properties:
-        code:
-          type: string
-          enum:
-          - INVALID_BODY_REQUEST
-          - USER_UNAUTHORIZED
-          description: A standardized error descriptor.
-          example: INVALID_BODY_REQUEST
-        message:
-          description: A detailed error message.
-          type: string
-    CreateWebhookResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the newly created webhook.
-        token:
-          $ref: '#/components/schemas/WebhookToken'
   securitySchemes:
     oAuthWithPKCE:
       type: oauth2
