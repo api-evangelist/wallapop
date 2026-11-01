@@ -64,6 +64,143 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Wallapop is a company surfaced as a portfolio company of accel, insight-partners, northzone and added to the API Evangelist network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment pipeline.
+Wallapop is a Barcelona-based consumer marketplace for buying and selling second-hand items across Spain, Italy, and Portugal, backed by Accel, Insight Partners, and Northzone. Its Wallapop Connect API lets professional sellers and third-party integrators programmatically publish and manage listings (Items Connect API), accept shipping requests and track transactions through delivery (Transactions Connect API), and subscribe to signed event notifications (Webhooks Connect API), all secured with OAuth 2.0 Authorization Code + PKCE via its Keycloak-based identity service.
 
-Backed by: accel, insight-partners, northzone — http://www.wallapop.com
+**Areas:** Company · Consumer · Marketplace · E-Commerce · Secondhand · Classifieds · Shipping · Webhook
+
+## Wallapop on APIs.io
+
+Everything profiled for Wallapop is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/wallapop/](https://apis.io/providers/wallapop/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [Wallapop Categories API](https://apis.io/apis/wallapop/wallapop-categories-api/) — A category is a classification for product listings, with specific attributes and constraints that products within the category must adhere to.
+- [Wallapop Delivery API](https://apis.io/apis/wallapop/wallapop-delivery-api/) — The Delivery API from Wallapop — 1 operation(s) for delivery.
+- [Wallapop Disputes API](https://apis.io/apis/wallapop/wallapop-disputes-api/) — The Disputes API from Wallapop — 1 operation(s) for disputes.
+- [Wallapop Items API](https://apis.io/apis/wallapop/wallapop-items-api/) — An item refers to a listing created by a user on the Wallapop marketplace, indicating their intent to sell. These items can include a diverse range of products.
+- [Wallapop Transactions API](https://apis.io/apis/wallapop/wallapop-transactions-api/) — A shipping transaction is initiated when a seller accepts a shipping request.
+- [Wallapop Webhooks API](https://apis.io/apis/wallapop/wallapop-webhooks-api/) — Webhooks allow you to receive event notifications.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Wallapop Webhooks Catalog](https://apis.io/asyncapis/wallapop/wallapop-webhooks-catalog/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [wallapop-connect-docs](https://apis.io/servers/wallapop/wallapop-connect-docs/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [Items Connect Categories API](https://apis.io/collections/wallapop/open-wallapop-categories-api/)
+- [Items Connect Categories Delivery API](https://apis.io/collections/wallapop/open-wallapop-delivery-api/)
+- [Items Connect Categories Disputes API](https://apis.io/collections/wallapop/open-wallapop-disputes-api/)
+- [Connect Categories Items API](https://apis.io/collections/wallapop/open-wallapop-items-api/)
+- [Items Connect Categories Transactions API](https://apis.io/collections/wallapop/open-wallapop-transactions-api/)
+- [Items Connect Categories Webhooks API](https://apis.io/collections/wallapop/open-wallapop-webhooks-api/)
+
+#### Overlays (3)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Wallapop Items Overlay](https://apis.io/overlays/wallapop/wallapop-items-overlay/)
+- [Wallapop Transactions Overlay](https://apis.io/overlays/wallapop/wallapop-transactions-overlay/)
+- [Wallapop Webhooks Overlay](https://apis.io/overlays/wallapop/wallapop-webhooks-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Wallapop Authentication](https://apis.io/security/wallapop/wallapop-authentication/)
+- [Wallapop Domain Security](https://apis.io/security/wallapop/wallapop-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Wallapop Scopes](https://apis.io/scopes/wallapop/wallapop-scopes/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Wallapop Rate Limits](https://apis.io/rate-limits/wallapop/wallapop-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.wallapop.com)
+- [Documentation](https://developers.wallapop.com/intro)
+- [Getting started](https://developers.wallapop.com/pages/guides/quickstart)
+- [API reference](https://developers.wallapop.com/apis/)
+- [Pricing](https://es.wallapop.com/wallapop-pro)
+- [Sign up](https://es.wallapop.com/login)
+- [Support](https://ayuda.wallapop.com/)
+- [Terms of service](https://es.wallapop.com/toc)
+- [Privacy policy](https://es.wallapop.com/privacy)
+- [GitHub](https://github.com/Wallapop)
+
+## API Evangelist rating
+
+**Kin Score 53.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 58.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 57.9 |
+| Developer ergonomics | 56.5 |
+| Access clarity | 44.7 |
+
+**Agent readiness 47.4** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/wallapop/](https://apis.io/providers/wallapop/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Wallapop: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/wallapop/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
